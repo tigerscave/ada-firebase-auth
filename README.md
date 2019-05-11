@@ -1,4 +1,4 @@
-# Pre requirements
+# Prerequisite
 
 Install the Firebase CLI  
 
