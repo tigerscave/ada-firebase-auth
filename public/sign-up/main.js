@@ -12,6 +12,7 @@ const main = () => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((res) => {
       alert("success to create user!");
+      window.location.replace("../login");
       console.log(res);
     })
     .catch((err) => {

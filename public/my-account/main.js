@@ -15,24 +15,36 @@ const checkUserAuth = () => {
   });
 };
 
+const onLogoutButtonClicked = () => {
+  firebase.auth().signOut()
+  .then((res) => {
+    alert("logout success!");
+    window.location.replace("../login");
+    console.log(res);
+  })
+  .catch((err) => {
+    alert("Failed to logout !")
+    console.log(err);
+  })
+};
+
+const onDeleteButtonClicked = () => {
+  const user = firebase.auth().currentUser;
+  user.delete().then(() => {
+    alert("user delete success !");
+    window.location.replace("../login");
+  }).catch(function(error) {
+    alert("Failed to delete user !")
+  });
+}
+
 const main = () => {
   checkUserAuth();
   const logoutButton = document.getElementById('logoutButton');
+  const deleteButton = document.getElementById('deleteButton');
 
-  const onButtonClicked = () => {
-    firebase.auth().signOut()
-    .then((res) => {
-      alert("logout success!");
-      window.location.replace("../login");
-      console.log(res);
-    })
-    .catch((err) => {
-      alert("Failed to logout !")
-      console.log(err);
-    })
-  }
-
-  logoutButton.addEventListener('click', onButtonClicked);
+  logoutButton.addEventListener('click', onLogoutButtonClicked);
+  deleteButton.addEventListener('click', onDeleteButtonClicked);
 };
 
 window.addEventListener('DOMContentLoaded', main);
