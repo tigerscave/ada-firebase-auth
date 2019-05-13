@@ -2,7 +2,16 @@
 
 const displayUserInfo = user => {
   console.log(user);
-  document.getElementById('email').innerHTML = user.email;
+  const { email, displayName, photoURL } = user;
+  document.getElementById('email').innerHTML = email;
+  document.getElementById('displayName').innerHTML = displayName;
+
+  const photoEl = document.getElementById('myPhoto');
+  if(photoURL) {
+    photoEl.src = photoURL;
+  } else {
+    photoEl.src = "http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png";
+  }
 }
 
 const checkUserAuth = () => {
@@ -38,13 +47,19 @@ const onDeleteButtonClicked = () => {
   });
 }
 
+const onEditButtonClicked = () => {
+  window.location.replace("../edit-user");
+}
+
 const main = () => {
   checkUserAuth();
   const logoutButton = document.getElementById('logoutButton');
   const deleteButton = document.getElementById('deleteButton');
+  const editButton = document.getElementById('editButton');
 
   logoutButton.addEventListener('click', onLogoutButtonClicked);
   deleteButton.addEventListener('click', onDeleteButtonClicked);
+  editButton.addEventListener('click', onEditButtonClicked)
 };
 
 window.addEventListener('DOMContentLoaded', main);
