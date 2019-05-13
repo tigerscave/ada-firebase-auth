@@ -47,19 +47,28 @@ const onDeleteButtonClicked = () => {
   });
 }
 
-const onEditButtonClicked = () => {
-  window.location.replace("../edit-user");
-}
-
 const main = () => {
   checkUserAuth();
   const logoutButton = document.getElementById('logoutButton');
   const deleteButton = document.getElementById('deleteButton');
   const editButton = document.getElementById('editButton');
+  const changeEmailButton = document.getElementById('changeEmail');
+  const changePasswordButton = document.getElementById('changePassword');
 
   logoutButton.addEventListener('click', onLogoutButtonClicked);
   deleteButton.addEventListener('click', onDeleteButtonClicked);
-  editButton.addEventListener('click', onEditButtonClicked)
+
+  editButton.addEventListener('click', () => {
+    window.location.href = "../edit-user";
+  });
+
+  changeEmailButton.addEventListener('click', () => {
+    window.location.href = "../change-email";
+  })
+
+  changePasswordButton.addEventListener('click', () => {
+    window.location.href = "../change-password";
+  })
 };
 
 window.addEventListener('DOMContentLoaded', main);
