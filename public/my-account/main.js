@@ -52,8 +52,11 @@ const main = () => {
   const logoutButton = document.getElementById('logoutButton');
   const deleteButton = document.getElementById('deleteButton');
   const editButton = document.getElementById('editButton');
+  const detailButton = document.getElementById('detailButton');
+
   const changeEmailButton = document.getElementById('changeEmail');
   const changePasswordButton = document.getElementById('changePassword');
+  const changePhotoButton = document.getElementById('changePhoto');
 
   logoutButton.addEventListener('click', onLogoutButtonClicked);
   deleteButton.addEventListener('click', onDeleteButtonClicked);
@@ -62,12 +65,20 @@ const main = () => {
     window.location.href = "../edit-user";
   });
 
+  detailButton.addEventListener('click', () => {
+    window.location.href = "../user-detail";
+  })
+
   changeEmailButton.addEventListener('click', () => {
     window.location.href = "../change-email";
   })
 
   changePasswordButton.addEventListener('click', () => {
     window.location.href = "../change-password";
+  })
+
+  changePhotoButton.addEventListener('click', () => {
+    window.location.href = "../change-photo";
   })
 };
 
