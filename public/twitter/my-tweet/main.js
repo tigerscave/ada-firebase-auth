@@ -13,16 +13,20 @@ const displayLatestTweet = data => {
 
   const imgListNode = document.createElement("LI");
   const imgNode = document.createElement("IMG");
-  imgNode.src = "https://4.img-dpreview.com/files/p/E~TS590x0~articles/3925134721/0266554465.jpeg";
+  imgNode.src = data.imgURL;
+  imgNode.width = "200";
   imgListNode.appendChild(imgNode);
 
   latestListEl.appendChild(listNode);
   latestListEl.appendChild(imgListNode);
-}
+};
 
 const fetchLatestPost = () => {
   const userId = firebase.auth().currentUser.uid;
-  db.collection("tweets").where("userId", "==", userId).limit(1)
+  db.collection("tweets")
+  .where("userId", "==", userId)
+  .orderBy("createdAt", "desc")
+  .limit(1)
   .get()
   .then((querySnapshot) => {
     console.log(querySnapshot);
@@ -35,12 +39,12 @@ const fetchLatestPost = () => {
     alert("error to fetch data");
     console.log(err);
   })
-}
+};
 
 const main = () => {
   db = firebase.firestore();
   const latestPostButton = document.getElementById('latestPostButton');
   latestPostButton.addEventListener('click', fetchLatestPost);
-}
+};
 
 window.addEventListener('DOMContentLoaded', main);
