@@ -4,13 +4,14 @@ let db = null;
 
 const postTweet = (content) => {
   const user = firebase.auth().currentUser;
+  const date = firebase.firestore.Timestamp;
   db.collection('tweets').doc().set({
     content,
     userId: user.uid,
-    createdAt: Date.now()
+    createdAt: date.now()
   }).then(() => {
-    alert("success to update biography");
-    window.location.href = "../user-detail"
+    alert("success to add tweet");
+    window.location.href = "../"
   }).catch(() => {
     alert("error");
   });
@@ -18,9 +19,10 @@ const postTweet = (content) => {
 
 const onPostButtonClicked = () => {
   const tweetInput = document.getElementById('tweetInput');
-  console.log(Date.now())
+  const date = firebase.firestore.Timestamp;
+  console.log(date.now())
   if(tweetInput.value.length) {
-    //postTweet(tweetInput.value);
+    postTweet(tweetInput.value);
   } else {
     alert("empty post not available");
   }
