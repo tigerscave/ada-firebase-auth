@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import pageData from "./pageData";
+import login from "./login";
 
 export default combineReducers({
-  pageData
+  login
 });

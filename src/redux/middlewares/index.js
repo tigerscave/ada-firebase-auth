@@ -1,3 +1,4 @@
 import { applyMiddleware } from "redux";
+import authMiddleware from "./authMiddleware";
 
-export default applyMiddleware();
+export default applyMiddleware(authMiddleware);

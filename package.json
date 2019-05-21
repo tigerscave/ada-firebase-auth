@@ -6,6 +6,8 @@
   "author": "cdra0624 <t.adaniya@adawarp.com>",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.0.0",
+    "firebase": "^6.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",

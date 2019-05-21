@@ -25,7 +25,9 @@ module.exports = {
   },
   globals: {
     document: true,
-    window: true
+    window: true,
+    alert: true,
+    process: true
   },
   settings: {
     react: {
