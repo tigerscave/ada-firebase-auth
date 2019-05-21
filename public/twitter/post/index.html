@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>firebase</title>
+    <script defer src="/__/firebase/6.0.2/firebase-app.js"></script>
+    <script defer src="/__/firebase/6.0.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/6.0.2/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/6.0.2/firebase-storage.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
+    <script src="main.js"></script>
+  </head>
+
+  <body>
+    <h1>Post Tweet</h1>
+    <div>
+      <textarea
+        id="tweetInput"
+        style="width: 60%; height: 100px;"
+      ></textarea>
+      <h3>Select Image</h3>
+      <input
+        id="fileInput"
+        type="file"/>
+      <div>
+        <img
+          width="200"
+          id="photoPreview"
+          src=""
+        />
+      </div>
+    </div>
+    <br />
+    <button id="postButton">post</button>
+  </body>
+</html>

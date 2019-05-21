@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>firebase</title>
+    <script defer src="/__/firebase/6.0.2/firebase-app.js"></script>
+    <script defer src="/__/firebase/6.0.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/6.0.2/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
+    <script src="main.js"></script>
+  </head>
+
+  <body>
+    <h1>My Post</h1>
+    <div>
+      <button id="latestPostButton">Fetch my latest post</button>
+      <ul id="latestTweet"></ul>
+    </div>
+    <hr />
+    <div>
+      <ul id="tweets"></ul>
+    </div>
+    <button id="back"><-</button>
+    <button id="next">-></button>
+  </body>
+</html>

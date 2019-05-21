@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>firebase</title>
+    <script defer src="/__/firebase/6.0.2/firebase-app.js"></script>
+    <script defer src="/__/firebase/6.0.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/6.0.2/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.14/dayjs.min.js"></script>
+    <script src="main.js"></script>
+  </head>
+
+  <body>
+    <h1>User Detail</h1>
+    <ul>
+      <li>
+        <h3>UserName</h3>
+        <p id="userName"></p>
+      </li>
+      <li>
+        <h3>FirstName</h3>
+        <p id="firstName"></p>
+      </li>
+      <li>
+        <h3>FamilyName</h3>
+        <p id="lastName"></p>
+      </li>
+      <li>
+        <h3>BirthDay</h3>
+        <p id="birthDay"></p>
+      </li>
+      <li>
+        <h3>Biography</h3>
+        <p id="biography"></p>
+      </li>
+    </ul>
+    <div>
+      <button id="editButton">Edit Detail</button>
+    </div>
+  </body>
+</html>
