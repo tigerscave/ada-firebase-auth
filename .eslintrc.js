@@ -24,7 +24,8 @@ module.exports = {
     sourceType: "module"
   },
   globals: {
-    document: true
+    document: true,
+    window: true
   },
   settings: {
     react: {
