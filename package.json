@@ -6,10 +6,16 @@
   "author": "cdra0624 <t.adaniya@adawarp.com>",
   "license": "MIT",
   "dependencies": {
+    "connected-react-router": "^6.3.1",
+    "dotenv": "^8.0.0",
+    "firebase": "^6.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "^3.0.1"
+    "react-scripts": "^3.0.1",
+    "redux": "^4.0.1",
+    "redux-actions": "^2.6.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,7 +45,8 @@
     "eslint-plugin-standard": "^4.0.0",
     "husky": "^2.3.0",
     "lint-staged": "^8.1.7",
-    "prettier": "1.17.1"
+    "prettier": "1.17.1",
+    "redux-devtools-extension": "^2.13.8"
   },
   "lint-staged": {
     "./src/**/*.js": "yarn fix"
