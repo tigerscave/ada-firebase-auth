@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import createStore from "./redux";
+import createStore, { history } from "./redux";
+import { ConnectedRouter } from "connected-react-router";
 
 import "./index.css";
 import App from "./app";
@@ -23,7 +24,9 @@ const store = createStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
   </Provider>,
   document.getElementById("root")
 );

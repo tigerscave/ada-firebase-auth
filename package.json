@@ -6,6 +6,7 @@
   "author": "cdra0624 <t.adaniya@adawarp.com>",
   "license": "MIT",
   "dependencies": {
+    "connected-react-router": "^6.3.1",
     "dotenv": "^8.0.0",
     "firebase": "^6.0.2",
     "react": "^16.8.6",

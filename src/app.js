@@ -1,10 +1,12 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./app.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Router, Route, Link } from "react-router-dom";
 import WelcomePage from "./pages/welcome";
 import SignUpPage from "./pages/sign-up";
 import LoginPage from "./pages/login";
+import TopPage from "./pages/top";
+import { history } from "./redux";
 
 const Hello = () => (
   <div className="App">
@@ -28,11 +30,12 @@ const Hello = () => (
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
       <Route path="/" exact component={Hello} />
-      <Route path="/welcome" exact component={WelcomePage} />
-      <Route path="/sign-up" exact component={SignUpPage} />
-      <Route path="/login" exact component={LoginPage} />
+      <Route path="/welcome" component={WelcomePage} />
+      <Route path="/sign-up" component={SignUpPage} />
+      <Route path="/login" component={LoginPage} />
+      <Route path="/top" component={TopPage} />
     </Router>
   );
 }
