@@ -1,18 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './app.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./app.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import WelcomePage from './pages/welcome';
-import SignUpPage from './pages/sign-up';
-import LoginPage from './pages/login';
+import WelcomePage from "./pages/welcome";
+import SignUpPage from "./pages/sign-up";
+import LoginPage from "./pages/login";
 
 const Hello = () => (
   <div className="App">
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Firebase sample using React-Redux / Vanilla JS
-      </p>
+      <p>Firebase sample using React-Redux / Vanilla JS</p>
       <Link className="App-link" to="/welcome">
         <p>React-Redux Sample</p>
       </Link>
@@ -26,7 +24,7 @@ const Hello = () => (
       </a>
     </header>
   </div>
-)
+);
 
 function App() {
   return (
