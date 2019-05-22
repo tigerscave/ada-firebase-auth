@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { userLogin } from "../redux/reducers/login";
+import { userLogin, checkUserAuth } from "../redux/reducers/login";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -23,6 +23,11 @@ class LoginPage extends React.Component {
       });
     };
   }
+
+  componentDidMount = () => {
+    const { checkUserAuth } = this.props;
+    checkUserAuth();
+  };
 
   render() {
     const { email, password } = this.state;
@@ -57,13 +62,15 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLoginButtonClicked: cred => dispatch(userLogin(cred))
+    onLoginButtonClicked: cred => dispatch(userLogin(cred)),
+    checkUserAuth: () => dispatch(checkUserAuth())
   };
 };
 
 LoginPage.propTypes = {
   onLoginButtonClicked: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  checkUserAuth: PropTypes.func.isRequired
 };
 
 export default connect(

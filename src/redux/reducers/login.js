@@ -9,6 +9,9 @@ export const loginSuccess = createAction(LOGIN_SUCCESS);
 export const LOGIN_FAILED = "LOGIN_FAILED";
 export const loginFailed = createAction(LOGIN_FAILED);
 
+export const CHECK_USER_AUTH = "CHECK_USER_AUTH";
+export const checkUserAuth = createAction(CHECK_USER_AUTH);
+
 const INITIAL_STATE = {
   isLoading: false
 };
@@ -33,6 +36,13 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isLoading: false
+      };
+    }
+
+    case CHECK_USER_AUTH: {
+      return {
+        ...state,
+        isLoading: true
       };
     }
 
