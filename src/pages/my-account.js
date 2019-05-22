@@ -1,29 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { userLogout } from "../redux/reducers/logout";
+import React, { useState } from "react";
+import LogoutModal from "../components/logout/modal";
 
-const MyAccountPage = props => {
-  const { onLogoutButtonClicked } = props;
+const MyAccountPage = () => {
+  const [isModalShown, toggleModal] = useState(false);
   return (
     <div>
       <h1>MyAccount Page</h1>
-      <button onClick={onLogoutButtonClicked}>LOGOUT</button>
+      <button onClick={() => toggleModal(true)}>LOGOUT</button>
+      {isModalShown && <LogoutModal toggleModal={toggleModal} />}
     </div>
   );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onLogoutButtonClicked: () => dispatch(userLogout())
-  };
-};
-
-MyAccountPage.propTypes = {
-  onLogoutButtonClicked: PropTypes.func.isRequired
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(MyAccountPage);
+export default MyAccountPage;

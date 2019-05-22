@@ -48,6 +48,11 @@ class LoginPage extends React.Component {
         <button onClick={() => onLoginButtonClicked({ email, password })}>
           LOGIN
         </button>
+        <style jsx>{`
+          h1 {
+            color: blue;
+          }
+        `}</style>
       </div>
     );
   }
