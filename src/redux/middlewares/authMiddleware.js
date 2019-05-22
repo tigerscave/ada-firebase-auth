@@ -1,4 +1,6 @@
 import * as loginAction from "../reducers/login";
+import * as logoutAction from "../reducers/logout";
+
 import firebase from "firebase/app";
 import "firebase/auth";
 import { push } from "connected-react-router";
@@ -31,6 +33,21 @@ const authMiddleware = store => next => action => {
         store.dispatch(loginAction.loginFailed());
       }
     });
+  }
+
+  if (action.type === logoutAction.USER_LOGOUT) {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        alert("logout success!");
+        store.dispatch(logoutAction.logoutSuccess());
+        store.dispatch(push("/welcome"));
+      })
+      .catch(() => {
+        store.dispatch(logoutAction.logoutFailed());
+        alert("Failed to logout !");
+      });
   }
 };
 
