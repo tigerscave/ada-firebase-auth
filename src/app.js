@@ -2,11 +2,12 @@ import React from "react";
 import logo from "./logo.svg";
 import "./app.css";
 import { Router, Route, Link } from "react-router-dom";
+import { history } from "./redux";
 import WelcomePage from "./pages/welcome";
 import SignUpPage from "./pages/sign-up";
 import LoginPage from "./pages/login";
 import TopPage from "./pages/top";
-import { history } from "./redux";
+import MyAccountPage from "./pages/my-account";
 
 const Hello = () => (
   <div className="App">
@@ -36,6 +37,7 @@ function App() {
       <Route path="/sign-up" component={SignUpPage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/top" component={TopPage} />
+      <Route path="/my-account" component={MyAccountPage} />
     </Router>
   );
 }
