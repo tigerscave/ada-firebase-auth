@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteUser } from "../../redux/reducers/user";
 
-const RemoveAccountModal = props => {
+const ConfirmDeleteModal = props => {
   const { toggleModal, onDeleteButtonClicked } = props;
   return (
     <div className="container">
@@ -17,7 +17,7 @@ const RemoveAccountModal = props => {
       <style jsx>{`
         .container {
           position: absolute;
-          top: 10rem;
+          top: 20rem;
           right: 10rem;
           width: 10rem;
           height: 10rem;
@@ -37,7 +37,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-RemoveAccountModal.propTypes = {
+ConfirmDeleteModal.propTypes = {
   toggleModal: PropTypes.func.isRequired,
   onDeleteButtonClicked: PropTypes.func.isRequired
 };
@@ -45,4 +45,4 @@ RemoveAccountModal.propTypes = {
 export default connect(
   null,
   mapDispatchToProps
-)(RemoveAccountModal);
+)(ConfirmDeleteModal);

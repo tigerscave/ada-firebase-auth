@@ -1,53 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createUser } from "../redux/reducers/user";
 
-class SignUpPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: ""
-    };
+const SignUpPage = props => {
+  const [email, onEmailChanged] = useState("");
+  const [password, onPasswordChanged] = useState("");
+  const { onSignUpButtonClicked } = props;
+  return (
+    <div>
+      <h1>Sign Up</h1>
+      <input
+        placeholder="email"
+        onChange={e => onEmailChanged(e.target.value)}
+        value={email}
+      />
+      <input
+        placeholder="password"
+        onChange={e => onPasswordChanged(e.target.value)}
+        value={password}
+      />
 
-    this.onEmailChanged = e => {
-      this.setState({
-        email: e.target.value
-      });
-    };
-
-    this.onPasswordChanged = e => {
-      this.setState({
-        password: e.target.value
-      });
-    };
-  }
-
-  render() {
-    const { email, password } = this.state;
-    const { onSignUpButtonClicked } = this.props;
-    return (
-      <div>
-        <h1>Sign Up</h1>
-        <input
-          placeholder="email"
-          onChange={this.onEmailChanged}
-          value={email}
-        />
-        <input
-          placeholder="password"
-          onChange={this.onPasswordChanged}
-          value={password}
-        />
-
-        <button onClick={() => onSignUpButtonClicked({ email, password })}>
-          Sign up
-        </button>
-      </div>
-    );
-  }
-}
+      <button onClick={() => onSignUpButtonClicked({ email, password })}>
+        Sign up
+      </button>
+    </div>
+  );
+};
 
 SignUpPage.propTypes = {
   onSignUpButtonClicked: PropTypes.func.isRequired

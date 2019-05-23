@@ -72,7 +72,8 @@ const reducer = (state = INITIAL_STATE, action) => {
 
     case DELETE_USER: {
       return {
-        ...state
+        ...state,
+        userCredential: null
       };
     }
 
