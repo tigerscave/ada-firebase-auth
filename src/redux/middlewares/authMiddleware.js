@@ -1,5 +1,6 @@
 import * as loginAction from "../reducers/login";
 import * as logoutAction from "../reducers/logout";
+import * as userAction from "../reducers/user";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -47,6 +48,22 @@ const authMiddleware = store => next => action => {
       .catch(() => {
         store.dispatch(logoutAction.logoutFailed());
         alert("Failed to logout !");
+      });
+  }
+
+  if (action.type === userAction.CREATE_USER) {
+    const { email, password } = action.payload;
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        alert("User sign up successfully");
+        store.dispatch(userAction.createUserSuccess());
+        store.dispatch(push("/top"));
+      })
+      .catch(() => {
+        store.dispatch(userAction.createUserFailed());
+        alert("User Sign Up Failed");
       });
   }
 };

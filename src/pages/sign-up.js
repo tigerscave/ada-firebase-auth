@@ -1,5 +1,7 @@
 import React from "react";
-import firebase from "firebase/app";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { createUser } from "../redux/reducers/user";
 
 class SignUpPage extends React.Component {
   constructor(props) {
@@ -20,22 +22,11 @@ class SignUpPage extends React.Component {
         password: e.target.value
       });
     };
-
-    this.onSignUpUser = (email, password) => {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          alert("User sign up successfully");
-        })
-        .catch(() => {
-          alert("User Sign Up Failed");
-        });
-    };
   }
 
   render() {
     const { email, password } = this.state;
+    const { onSignUpButtonClicked } = this.props;
     return (
       <div>
         <h1>Sign Up</h1>
@@ -50,7 +41,7 @@ class SignUpPage extends React.Component {
           value={password}
         />
 
-        <button onClick={() => this.onSignUpUser(email, password)}>
+        <button onClick={() => onSignUpButtonClicked({ email, password })}>
           Sign up
         </button>
       </div>
@@ -58,4 +49,17 @@ class SignUpPage extends React.Component {
   }
 }
 
-export default SignUpPage;
+SignUpPage.propTypes = {
+  onSignUpButtonClicked: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSignUpButtonClicked: cred => dispatch(createUser(cred))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignUpPage);
