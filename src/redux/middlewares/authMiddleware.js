@@ -1,5 +1,6 @@
 import * as loginAction from "../reducers/login";
 import * as logoutAction from "../reducers/logout";
+import * as userAction from "../reducers/user";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -12,9 +13,10 @@ const authMiddleware = store => next => action => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => {
+      .then(user => {
         alert("login success");
         store.dispatch(loginAction.loginSuccess());
+        store.dispatch(userAction.setUser(user));
         store.dispatch(push("/top"));
       })
       .catch(() => {
@@ -28,6 +30,7 @@ const authMiddleware = store => next => action => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         store.dispatch(loginAction.loginSuccess());
+        store.dispatch(userAction.setUser(user));
         store.dispatch(push("/top"));
       } else {
         store.dispatch(loginAction.loginFailed());
@@ -42,11 +45,42 @@ const authMiddleware = store => next => action => {
       .then(() => {
         alert("logout success!");
         store.dispatch(logoutAction.logoutSuccess());
+        store.dispatch(userAction.clearUser());
         store.dispatch(push("/welcome"));
       })
       .catch(() => {
         store.dispatch(logoutAction.logoutFailed());
         alert("Failed to logout !");
+      });
+  }
+
+  if (action.type === userAction.CREATE_USER) {
+    const { email, password } = action.payload;
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(user => {
+        alert("User sign up successfully");
+        store.dispatch(userAction.createUserSuccess());
+        store.dispatch(userAction.setUser(user));
+        store.dispatch(push("/top"));
+      })
+      .catch(() => {
+        store.dispatch(userAction.createUserFailed());
+        alert("User Sign Up Failed");
+      });
+  }
+
+  if (action.type === userAction.DELETE_USER) {
+    firebase
+      .auth()
+      .currentUser.delete()
+      .then(() => {
+        alert("Your account deleted");
+        store.dispatch(push("/welcome"));
+      })
+      .catch(err => {
+        alert("Error: " + err.message);
       });
   }
 };
