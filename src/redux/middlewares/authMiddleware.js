@@ -13,9 +13,10 @@ const authMiddleware = store => next => action => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => {
+      .then(user => {
         alert("login success");
         store.dispatch(loginAction.loginSuccess());
+        store.dispatch(userAction.setUser(user));
         store.dispatch(push("/top"));
       })
       .catch(() => {
@@ -29,6 +30,7 @@ const authMiddleware = store => next => action => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         store.dispatch(loginAction.loginSuccess());
+        store.dispatch(userAction.setUser(user));
         store.dispatch(push("/top"));
       } else {
         store.dispatch(loginAction.loginFailed());
@@ -43,6 +45,7 @@ const authMiddleware = store => next => action => {
       .then(() => {
         alert("logout success!");
         store.dispatch(logoutAction.logoutSuccess());
+        store.dispatch(userAction.clearUser());
         store.dispatch(push("/welcome"));
       })
       .catch(() => {
@@ -56,9 +59,10 @@ const authMiddleware = store => next => action => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => {
+      .then(user => {
         alert("User sign up successfully");
         store.dispatch(userAction.createUserSuccess());
+        store.dispatch(userAction.setUser(user));
         store.dispatch(push("/top"));
       })
       .catch(() => {

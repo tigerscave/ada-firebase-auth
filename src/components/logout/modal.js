@@ -18,7 +18,7 @@ const LogoutModal = props => {
         .container {
           position: absolute;
           top: 10rem;
-          left: 10rem;
+          right: 10rem;
           width: 10rem;
           height: 10rem;
           background: gray;
