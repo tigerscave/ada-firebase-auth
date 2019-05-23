@@ -70,6 +70,19 @@ const authMiddleware = store => next => action => {
         alert("User Sign Up Failed");
       });
   }
+
+  if (action.type === userAction.DELETE_USER) {
+    firebase
+      .auth()
+      .currentUser.delete()
+      .then(() => {
+        alert("Your account deleted");
+        store.dispatch(push("/welcome"));
+      })
+      .catch(err => {
+        alert("Error: " + err.message);
+      });
+  }
 };
 
 export default authMiddleware;

@@ -3,8 +3,21 @@ import { checkUserAuth } from "../../redux/reducers/login";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { push } from "connected-react-router";
+import RemoveAccountModal from "./delete-modal";
 
 class UserDetail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isToggleModal: false
+    };
+
+    this.onToggleModal = cred => {
+      this.setState({
+        isToggleModal: cred
+      });
+    };
+  }
   componentDidMount = () => {
     const { userCredential, redirect } = this.props;
     if (!userCredential) {
@@ -14,6 +27,7 @@ class UserDetail extends React.Component {
 
   render() {
     const { userCredential } = this.props;
+    const { isToggleModal } = this.state;
     return (
       <div>
         {userCredential && (
@@ -25,6 +39,14 @@ class UserDetail extends React.Component {
                 <li>{userCredential.email}</li>
               </ul>
             </div>
+            <div>
+              <button onClick={() => this.onToggleModal(true)}>
+                DELETE ACCOUNT
+              </button>
+            </div>
+            {isToggleModal && (
+              <RemoveAccountModal toggleModal={this.onToggleModal} />
+            )}
           </div>
         )}
       </div>
