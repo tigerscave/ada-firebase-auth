@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LogoutModal from "../components/logout/modal";
 import UserDetail from "../components/my-account/user-detail";
 import ConfirmDeleteModal from "../components/my-account/delete-modal";
+import EditProfile from "../components/my-account/edit-user-profile";
 
 const MyAccountPage = () => {
   const [isModalShown, toggleModal] = useState(false);
@@ -16,6 +17,7 @@ const MyAccountPage = () => {
         <button onClick={() => onToggleModal(true)}>DELETE ACCOUNT</button>
         {isToggleModal && <ConfirmDeleteModal toggleModal={onToggleModal} />}
       </div>
+      <EditProfile />
     </div>
   );
 };
