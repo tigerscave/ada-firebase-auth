@@ -7,6 +7,9 @@ const TopPage = () => (
     <Link to="/my-account">
       <p>My Account</p>
     </Link>
+    <Link to="/twitter">
+      <p>Twitter</p>
+    </Link>
     <h3>Login success !!!</h3>
   </div>
 );
