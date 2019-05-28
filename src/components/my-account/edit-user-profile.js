@@ -7,14 +7,14 @@ const EditProfile = props => {
   const { onUpdateProfile } = props;
   const [displayName, onChangeName] = useState("");
   const [photoURL, onChangePhoto] = useState("");
-  const [isToggleModal, onToggleModal] = useState(false);
+  const [isModalShown, toggleModal] = useState(false);
   return (
     <div>
       <h4>Edit Your Profile</h4>
-      <button onClick={() => onToggleModal(true)}>Edit User profile</button>
-      {isToggleModal && (
+      <button onClick={() => toggleModal(true)}>Edit User profile</button>
+      {isModalShown && (
         <div className="container">
-          <button onClick={() => onToggleModal(false)}>Close</button>
+          <button onClick={() => toggleModal(false)}>Close</button>
           <div>
             <input
               placeholder="Name"
@@ -24,7 +24,6 @@ const EditProfile = props => {
               placeholder="PhotoURL"
               onChange={e => onChangePhoto(e.target.value)}
             />
-            {/*<button id="uploadPhoto">Upload Photo</button>*/}
           </div>
           <div>
             <button
