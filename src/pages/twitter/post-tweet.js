@@ -1,21 +1,22 @@
 import React, { useState } from "react";
-import { createTweet } from "../../redux/reducers/post-tweet";
+import { createTweet } from "../../redux/reducers/tweet";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 const PostTweetPage = props => {
   const [tweetText, onGetTweetText] = useState("");
-  const { onCreateTweetPost } = props;
+  const { onPostButtonClicked } = props;
   return (
     <div>
       <h1>Post Tweet</h1>
-      <input
-        placeholder="password"
+      <textarea
+        placeholder="What is in your mind, dear?"
         onChange={e => onGetTweetText(e.target.value)}
         value={tweetText}
+        rows="6"
+        cols="40"
       />
-
-      <button onClick={() => onCreateTweetPost({ tweetText })}>
+      <button onClick={() => onPostButtonClicked({ tweetText })}>
         Post my tweet
       </button>
     </div>
@@ -24,12 +25,12 @@ const PostTweetPage = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onCreateTweetPost: cred => dispatch(createTweet(cred))
+    onPostButtonClicked: cred => dispatch(createTweet(cred))
   };
 };
 
 PostTweetPage.propTypes = {
-  onCreateTweetPost: PropTypes.func.isRequired
+  onPostButtonClicked: PropTypes.func.isRequired
 };
 
 export default connect(

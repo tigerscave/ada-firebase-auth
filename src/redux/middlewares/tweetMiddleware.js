@@ -1,4 +1,4 @@
-import * as postTweet from "../reducers/post-tweet";
+import * as postTweet from "../reducers/tweet";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -16,7 +16,6 @@ const tweetMiddleware = store => next => action => {
         .doc()
         .set({
           tweetText,
-          // image: imageUrl,
           userId: user.uid,
           createdAt: date.fromDate(new Date())
         })
