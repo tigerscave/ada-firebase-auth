@@ -13,9 +13,19 @@ const UserDetail = ({ userCredential }) => {
           <div>
             <img />
             <ul>
+              <li>{userCredential.displayName}</li>
               <li>{userCredential.email}</li>
+              <li>
+                <img className="profile" src={userCredential.photoURL} />
+              </li>
             </ul>
           </div>
+          <style jsx>{`
+            .profile {
+              width: 250px;
+              height: 200px;
+            }
+          `}</style>
         </div>
       )}
     </div>

@@ -21,6 +21,9 @@ export const clearUser = createAction(CLEAR_USER);
 export const DELETE_USER = "DELETE_USER";
 export const deleteUser = createAction(DELETE_USER);
 
+export const EDIT_PROFILE = "EDIT_PROFILE";
+export const editProfile = createAction(EDIT_PROFILE);
+
 const INITIAL_STATE = {
   isLoading: false,
   userCredential: null
@@ -71,6 +74,13 @@ const reducer = (state = INITIAL_STATE, action) => {
     }
 
     case DELETE_USER: {
+      return {
+        ...state,
+        userCredential: null
+      };
+    }
+
+    case EDIT_PROFILE: {
       return {
         ...state,
         userCredential: null

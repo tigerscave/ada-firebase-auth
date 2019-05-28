@@ -83,6 +83,23 @@ const authMiddleware = store => next => action => {
         alert("Error: " + err.message);
       });
   }
+
+  if (action.type === userAction.EDIT_PROFILE) {
+    const { displayName, photoURL } = action.payload;
+    firebase
+      .auth()
+      .currentUser.updateProfile({
+        displayName,
+        photoURL
+      })
+      .then(() => {
+        alert("Profile Update");
+        store.dispatch(push("/top"));
+      })
+      .catch(err => {
+        alert("Error: " + err.message);
+      });
+  }
 };
 
 export default authMiddleware;
