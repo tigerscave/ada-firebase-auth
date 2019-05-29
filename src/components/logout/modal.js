@@ -24,7 +24,7 @@ const LogoutModal = props => {
           background: gray;
         }
         button.close {
-          marginbottom: 1rem;
+          margin-bottom: 1rem;
         }
       `}</style>
     </div>

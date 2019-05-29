@@ -48,8 +48,12 @@ const mapDispatchToProps = dispatch => {
 
 UserDetail.propTypes = {
   checkUserAuth: PropTypes.func.isRequired,
-  userCredential: PropTypes.shape().isRequired,
+  userCredential: PropTypes.shape(),
   redirect: PropTypes.func.isRequired
+};
+
+UserDetail.defaultProps = {
+  userCredential: {}
 };
 
 export default connect(

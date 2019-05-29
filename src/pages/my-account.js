@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import LogoutModal from "../components/logout/modal";
 import UserDetail from "../components/my-account/user-detail";
 import ConfirmDeleteModal from "../components/my-account/delete-modal";
-import EditProfile from "../components/my-account/edit-user-profile";
+import EditProfile from "../components/my-account/edit-profile";
+import UserPhotoUpdate from "../components/my-account/user-photo-update";
 
 const MyAccountPage = () => {
   const [isModalShown, toggleModal] = useState(false);
@@ -18,6 +19,7 @@ const MyAccountPage = () => {
         {isToggleModal && <ConfirmDeleteModal toggleModal={onToggleModal} />}
       </div>
       <EditProfile />
+      <UserPhotoUpdate />
     </div>
   );
 };
