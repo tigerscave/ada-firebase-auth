@@ -1,6 +1,7 @@
 import * as loginAction from "../reducers/login";
 import * as logoutAction from "../reducers/logout";
 import * as userAction from "../reducers/user";
+import * as tweetAction from "../reducers/tweet";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -8,6 +9,19 @@ import { push } from "connected-react-router";
 
 const authMiddleware = store => next => action => {
   next(action);
+
+  const { userCredential } = store.getState().user;
+
+  if (!userCredential) {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        store.dispatch(loginAction.loginSuccess());
+        store.dispatch(userAction.setUser(user));
+        store.dispatch(tweetAction.myTweetListener(user));
+      }
+    });
+  }
+
   if (action.type === loginAction.USER_LOGIN) {
     const { email, password } = action.payload;
     firebase
@@ -17,6 +31,7 @@ const authMiddleware = store => next => action => {
         alert("login success");
         store.dispatch(loginAction.loginSuccess());
         store.dispatch(userAction.setUser(user));
+        store.dispatch(tweetAction.myTweetListener(user));
         store.dispatch(push("/top"));
       })
       .catch(() => {
@@ -31,6 +46,7 @@ const authMiddleware = store => next => action => {
       if (user) {
         store.dispatch(loginAction.loginSuccess());
         store.dispatch(userAction.setUser(user));
+        store.dispatch(tweetAction.myTweetListener(user));
         store.dispatch(push("/top"));
       } else {
         store.dispatch(loginAction.loginFailed());
