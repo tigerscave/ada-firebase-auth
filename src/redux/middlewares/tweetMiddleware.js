@@ -1,4 +1,4 @@
-import * as postTweet from "../reducers/tweet";
+import * as userTweets from "../reducers/tweet";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -6,11 +6,11 @@ import { push } from "connected-react-router";
 
 const tweetMiddleware = store => next => action => {
   next(action);
-
-  if (action.type === postTweet.CREATE_TWEET) {
+  const db = firebase.firestore();
+  if (action.type === userTweets.CREATE_TWEET) {
     const { tweetText } = action.payload;
     const date = firebase.firestore.Timestamp;
-    const db = firebase.firestore();
+
     firebase.auth().onAuthStateChanged(user => {
       db.collection("tweets")
         .doc()
@@ -20,7 +20,25 @@ const tweetMiddleware = store => next => action => {
           createdAt: date.fromDate(new Date())
         })
         .then(() => {
-          store.dispatch(push("/twitter"));
+          store.dispatch(userTweets.displayTweets);
+          store.dispatch(push("/my-tweet"));
+        });
+    });
+  }
+
+  if (action.type === userTweets.DISPLAY_TWEETS) {
+    firebase.auth().onAuthStateChanged(user => {
+      db.collection("tweets")
+        .where("userId", "==", user.uid)
+        .orderBy("createdAt", "desc")
+        .limit(3)
+        .get()
+        .then(querySnapshot => {
+          const docs = querySnapshot.docs;
+          console.log("this is docs: ", docs);
+        })
+        .catch(err => {
+          alert("Error: " + err.message);
         });
     });
   }
