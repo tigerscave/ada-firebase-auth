@@ -8,7 +8,8 @@ const tweetMiddleware = store => next => action => {
   next(action);
 
   if (action.type === postTweet.CREATE_TWEET) {
-    const { tweetText } = action.payload;
+    const { tweetText, imageUrl } = action.payload;
+    console.log('redux: ', imageUrl)
     const date = firebase.firestore.Timestamp;
     const db = firebase.firestore();
     firebase.auth().onAuthStateChanged(user => {
