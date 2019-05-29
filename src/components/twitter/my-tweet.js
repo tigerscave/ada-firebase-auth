@@ -3,27 +3,32 @@ import { connect } from "react-redux";
 import { displayTweets } from "../../redux/reducers/tweet";
 
 const DisplayMyTweet = props => {
-  console.log(props.docs, "docsssss");
-  const { displayTweets } = props;
+  const { displayTweets, latestTweet } = props;
+  console.log(latestTweet);
   return (
     <div>
       <h1>Display tweets component</h1>
+      {latestTweet && (
+        <div>
+          <p>{latestTweet.tweetText}</p>
+        </div>
+      )}
       <button onClick={displayTweets}>Click me</button>
     </div>
   );
 };
 
 const mapStateToProps = state => {
-  const { docs } = state;
-  console.log("docssss: ", docs);
+  const { postTweet } = state;
+
   return {
-    docs
+    latestTweet: postTweet.latestTweet
   };
 };
 
 const matDispatchToProps = dispatch => {
   return {
-    displayTweets: () => dispatch(displayTweets)
+    displayTweets: () => dispatch(displayTweets())
   };
 };
 

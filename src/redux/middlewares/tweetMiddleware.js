@@ -31,13 +31,16 @@ const tweetMiddleware = store => next => action => {
       db.collection("tweets")
         .where("userId", "==", user.uid)
         .orderBy("createdAt", "desc")
-        .limit(3)
+        .limit(1)
         .get()
         .then(querySnapshot => {
-          const docs = querySnapshot.docs;
-          console.log("this is docs: ", docs);
+          store.dispatch(
+            userTweets.fetchLatestTweetSuccess(querySnapshot.docs)
+          );
+          console.log("this is docs: ", querySnapshot.docs);
         })
         .catch(err => {
+          store.dispatch(userTweets.fetchLatestTweetFailed());
           alert("Error: " + err.message);
         });
     });
