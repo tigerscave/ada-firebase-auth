@@ -41,7 +41,6 @@ const reducer = (state = INITIAL_STATE, action) => {
 
     case ON_SNAPSHOT_MY_TWEET: {
       const docs = action.payload;
-      console.log("ON_SNAPSHOT_MY_TWEET", docs);
       const myTweets = docs.map(doc => {
         return doc.data();
       });
