@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { displayTweets } from "../../redux/reducers/tweet";
+import PropTypes from "prop-types";
 
 const DisplayMyTweet = props => {
   const { displayTweets, latestTweet, myTweets } = props;
-  console.log(latestTweet);
   return (
     <div>
       <h1>Display tweets component</h1>
@@ -16,8 +16,8 @@ const DisplayMyTweet = props => {
       <button onClick={displayTweets}>Click me</button>
       <div>
         <ul>
-          {myTweets.map(tweet => (
-            <li>{tweet.content}</li>
+          {myTweets.map((tweet, index) => (
+            <li key={index}>{tweet.content}</li>
           ))}
         </ul>
       </div>
@@ -39,6 +39,11 @@ const matDispatchToProps = dispatch => {
   };
 };
 
+DisplayMyTweet.propTypes = {
+  displayTweets: PropTypes.func.isRequired,
+  latestTweet: PropTypes.shape().isRequired,
+  myTweets: PropTypes.shape().isRequired
+};
 export default connect(
   mapStateToProps,
   matDispatchToProps
