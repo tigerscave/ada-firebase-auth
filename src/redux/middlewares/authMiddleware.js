@@ -5,6 +5,7 @@ import * as tweetAction from "../reducers/tweet";
 
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/storage";
 import { push } from "connected-react-router";
 
 const authMiddleware = store => next => action => {
@@ -115,6 +116,29 @@ const authMiddleware = store => next => action => {
       .catch(err => {
         alert("Error: " + err.message);
       });
+  }
+
+  if (action.type === userAction.UPDATE_USER_PROFILE) {
+    const { image } = action.payload;
+    console.log("image name: ", action.payload, image);
+    const storageRef = firebase.storage().ref();
+    const imagesRef = storageRef.child(`images/${image.name}`);
+    if (image) {
+      imagesRef.put(image).then(snapShot => {
+        snapShot.ref.getDownloadURL().then(url => {
+          console.log("url is: ", url);
+          firebase
+            .auth()
+            .currentUser.updateProfile({ url })
+            .then(() => {
+              alert("Profile Updated");
+            })
+            .catch(err => {
+              alert("Error: " + err.message);
+            });
+        });
+      });
+    }
   }
 };
 
