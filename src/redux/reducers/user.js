@@ -24,6 +24,9 @@ export const deleteUser = createAction(DELETE_USER);
 export const EDIT_PROFILE = "EDIT_PROFILE";
 export const editProfile = createAction(EDIT_PROFILE);
 
+export const UPDATE_USER_PROFILE = "UPDATE_USER_PROFILE";
+export const updateUserProfile = createAction(UPDATE_USER_PROFILE);
+
 const INITIAL_STATE = {
   isLoading: false,
   userCredential: null
@@ -84,6 +87,12 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         userCredential: null
+      };
+    }
+
+    case UPDATE_USER_PROFILE: {
+      return {
+        ...state
       };
     }
 
