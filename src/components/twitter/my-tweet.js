@@ -17,7 +17,10 @@ const DisplayMyTweet = props => {
       <div>
         <ul>
           {myTweets.map((tweet, index) => (
-            <li key={index}>{tweet.content}</li>
+            <li key={index}>
+              <p>{tweet.content}</p>
+              <img width="200" src={tweet.imageUrl} />
+            </li>
           ))}
         </ul>
       </div>

@@ -1,27 +1,56 @@
-import React, { useState } from "react";
+import React from "react";
 import { createTweet } from "../../redux/reducers/tweet";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-const PostTweetPage = props => {
-  const [tweetText, onGetTweetText] = useState("");
-  const { onPostButtonClicked } = props;
-  return (
-    <div>
-      <h1>Post Tweet</h1>
-      <textarea
-        placeholder="What is in your mind, dear?"
-        onChange={e => onGetTweetText(e.target.value)}
-        value={tweetText}
-        rows="6"
-        cols="40"
-      />
-      <button onClick={() => onPostButtonClicked({ tweetText })}>
-        Post my tweet
-      </button>
-    </div>
-  );
-};
+class PostTweetPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      tweetText: "",
+      selectedImage: "",
+      image: ""
+    };
+
+    this.onGetTweetImage = e => {
+      this.setState({
+        selectedImage: window.URL.createObjectURL(e.target.files[0]),
+        image: e.target.files[0]
+      });
+    };
+
+    this.onGetTweetText = e => {
+      this.setState({
+        tweetText: e.target.value
+      });
+    };
+  }
+
+  render() {
+    const { onPostButtonClicked } = this.props;
+    const { tweetText, selectedImage, image } = this.state;
+    return (
+      <div>
+        <h1>Post Tweet</h1>
+        <textarea
+          placeholder="What is in your mind, dear?"
+          onChange={this.onGetTweetText}
+          value={tweetText}
+          rows="6"
+          cols="40"
+        />
+        <div>
+          <img width="250" src={selectedImage} />
+          <input onChange={this.onGetTweetImage} type="file" />
+        </div>
+        <button onClick={() => onPostButtonClicked({ tweetText, image })}>
+          Post my tweet
+        </button>
+      </div>
+    );
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {

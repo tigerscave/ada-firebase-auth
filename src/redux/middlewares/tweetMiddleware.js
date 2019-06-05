@@ -8,22 +8,44 @@ const tweetMiddleware = store => next => action => {
   next(action);
 
   const db = firebase.firestore();
-  if (action.type === userTweets.CREATE_TWEET) {
-    const { tweetText } = action.payload;
-    const date = firebase.firestore.Timestamp;
 
-    firebase.auth().onAuthStateChanged(user => {
-      db.collection("tweets")
-        .doc()
-        .set({
-          tweetText,
-          userId: user.uid,
-          createdAt: date.fromDate(new Date())
-        })
-        .then(() => {
-          store.dispatch(push("/twitter"));
+  if (action.type === userTweets.CREATE_TWEET) {
+    const { tweetText, image } = action.payload;
+    const date = firebase.firestore.Timestamp;
+    const storageRef = firebase.storage().ref();
+    if (image) {
+      const imagesRef = storageRef.child(`images/${image.name}`);
+      imagesRef.put(image).then(snapshot => {
+        snapshot.ref.getDownloadURL().then(imageUrl => {
+          firebase.auth().onAuthStateChanged(user => {
+            db.collection("tweets")
+              .doc()
+              .set({
+                content: tweetText,
+                imageUrl,
+                userId: user.uid,
+                createdAt: date.fromDate(new Date())
+              })
+              .then(() => {
+                store.dispatch(push("/twitter"));
+              });
+          });
         });
-    });
+      });
+    } else {
+      firebase.auth().onAuthStateChanged(user => {
+        db.collection("tweets")
+          .doc()
+          .set({
+            content: tweetText,
+            userId: user.uid,
+            createdAt: date.fromDate(new Date())
+          })
+          .then(() => {
+            store.dispatch(push("/twitter"));
+          });
+      });
+    }
   }
 
   if (action.type === userTweets.MY_TWEET_LISTENER) {
