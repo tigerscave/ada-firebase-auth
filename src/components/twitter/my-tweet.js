@@ -1,19 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
-import { displayTweets } from "../../redux/reducers/tweet";
+import { displayLatestTweets } from "../../redux/reducers/tweet";
 import PropTypes from "prop-types";
 
-const DisplayMyTweet = props => {
-  const { displayTweets, latestTweet, myTweets } = props;
+const DisplayLatestMyTweet = props => {
+  const { displayLatestTweets, latestTweet, myTweets } = props;
   return (
     <div>
       <h1>Display tweets component</h1>
       {latestTweet && (
         <div>
-          <p>{latestTweet.tweetText}</p>
+          <p>{latestTweet.content}</p>
         </div>
       )}
-      <button onClick={displayTweets}>Click me</button>
+      <button onClick={displayLatestTweets}>My Latest Tweet</button>
       <div>
         <ul>
           {myTweets.map((tweet, index) => (
@@ -38,16 +38,22 @@ const mapStateToProps = state => {
 
 const matDispatchToProps = dispatch => {
   return {
-    displayTweets: () => dispatch(displayTweets())
+    displayLatestTweets: () => dispatch(displayLatestTweets())
   };
 };
 
-DisplayMyTweet.propTypes = {
-  displayTweets: PropTypes.func.isRequired,
-  latestTweet: PropTypes.shape().isRequired,
-  myTweets: PropTypes.shape().isRequired
+DisplayLatestMyTweet.propTypes = {
+  displayLatestTweets: PropTypes.func.isRequired,
+  latestTweet: PropTypes.shape(),
+  myTweets: PropTypes.shape()
 };
+
+DisplayLatestMyTweet.defaultProps = {
+  latestTweet: {},
+  myTweets: {}
+};
+
 export default connect(
   mapStateToProps,
   matDispatchToProps
-)(DisplayMyTweet);
+)(DisplayLatestMyTweet);

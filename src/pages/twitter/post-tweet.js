@@ -13,14 +13,14 @@ class PostTweetPage extends React.Component {
       image: ""
     };
 
-    this.onGetTweetImage = e => {
+    this.onTweetImageChange = e => {
       this.setState({
         selectedImage: window.URL.createObjectURL(e.target.files[0]),
         image: e.target.files[0]
       });
     };
 
-    this.onGetTweetText = e => {
+    this.onTweetTextChange = e => {
       this.setState({
         tweetText: e.target.value
       });
@@ -35,14 +35,14 @@ class PostTweetPage extends React.Component {
         <h1>Post Tweet</h1>
         <textarea
           placeholder="What is in your mind, dear?"
-          onChange={this.onGetTweetText}
+          onChange={this.onTweetTextChange}
           value={tweetText}
           rows="6"
           cols="40"
         />
         <div>
           <img width="250" src={selectedImage} />
-          <input onChange={this.onGetTweetImage} type="file" />
+          <input onChange={this.onTweetImageChange} type="file" />
         </div>
         <button onClick={() => onPostButtonClicked({ tweetText, image })}>
           Post my tweet
