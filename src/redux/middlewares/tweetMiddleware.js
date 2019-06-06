@@ -56,6 +56,16 @@ const tweetMiddleware = store => next => action => {
         });
       });
   }
+
+  if (action.type === userTweets.DELETE_MY_TWEET) {
+    const tweetId = action.payload;
+    db.collection("tweets")
+      .doc(tweetId)
+      .delete()
+      .then(() => {
+        alert("Tweet was deleted");
+      });
+  }
 };
 
 export default tweetMiddleware;

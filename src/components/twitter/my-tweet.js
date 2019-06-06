@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { displayLatestTweets } from "../../redux/reducers/tweet";
+import { displayLatestTweets, deleteMyTweet } from "../../redux/reducers/tweet";
 import PropTypes from "prop-types";
 
 const DisplayLatestMyTweet = props => {
-  const { displayLatestTweets, latestTweet, myTweets } = props;
+  const { displayLatestTweets, latestTweet, myTweets, deleteMyTweet } = props;
+
   return (
     <div>
       <h1>Display tweets component</h1>
@@ -20,6 +21,9 @@ const DisplayLatestMyTweet = props => {
             <li key={index}>
               <p>{tweet.content}</p>
               <img width="200" src={tweet.imageUrl} />
+              <button onClick={() => deleteMyTweet(tweet.tweetId)}>
+                Delete
+              </button>
             </li>
           ))}
         </ul>
@@ -38,19 +42,21 @@ const mapStateToProps = state => {
 
 const matDispatchToProps = dispatch => {
   return {
-    displayLatestTweets: () => dispatch(displayLatestTweets())
+    displayLatestTweets: () => dispatch(displayLatestTweets()),
+    deleteMyTweet: id => dispatch(deleteMyTweet(id))
   };
 };
 
 DisplayLatestMyTweet.propTypes = {
   displayLatestTweets: PropTypes.func.isRequired,
+  deleteMyTweet: PropTypes.func.isRequired,
   latestTweet: PropTypes.shape(),
   myTweets: PropTypes.shape()
 };
 
 DisplayLatestMyTweet.defaultProps = {
   latestTweet: {},
-  myTweets: {}
+  myTweets: []
 };
 
 export default connect(
