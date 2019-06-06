@@ -66,6 +66,16 @@ const tweetMiddleware = store => next => action => {
         alert("Tweet was deleted");
       });
   }
+
+  if (action.type === userTweets.EDIT_MY_TWEET) {
+    const tweetId = action.payload;
+    db.collection("tweets")
+      .doc(tweetId)
+      .update({ content: "Fucking tweet update: " })
+      .then(() => {
+        alert("Tweet edited ...");
+      });
+  }
 };
 
 export default tweetMiddleware;
