@@ -15,6 +15,9 @@ export const onSnapshotMyTweet = createAction(ON_SNAPSHOT_MY_TWEET);
 export const DELETE_MY_TWEET = "DELETE_MY_TWEET";
 export const deleteMyTweet = createAction(DELETE_MY_TWEET);
 
+export const EDIT_MY_TWEET = "EDIT_MY_TWEET";
+export const editMyTweet = createAction(EDIT_MY_TWEET);
+
 const INITIAL_STATE = {
   isLoading: false,
   latestTweet: null,
@@ -57,6 +60,10 @@ const reducer = (state = INITIAL_STATE, action) => {
     }
 
     case DELETE_MY_TWEET: {
+      return state;
+    }
+
+    case EDIT_MY_TWEET: {
       return state;
     }
 
