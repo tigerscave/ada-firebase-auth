@@ -2,7 +2,8 @@ import * as userTweets from "../reducers/tweet";
 
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { push } from "connected-react-router";
+// import { push } from "connected-react-router";
+import { sendTweetToDB } from "./helpers/tweetMiddlewareHelper";
 
 const tweetMiddleware = store => next => action => {
   next(action);
@@ -13,38 +14,20 @@ const tweetMiddleware = store => next => action => {
     const { tweetText, image } = action.payload;
     const date = firebase.firestore.Timestamp;
     const storageRef = firebase.storage().ref();
+    const userId = store.getState().user.userCredential.uid;
     if (image) {
       const imagesRef = storageRef.child(`images/${image.name}`);
       imagesRef.put(image).then(snapshot => {
         snapshot.ref.getDownloadURL().then(imageUrl => {
-          firebase.auth().onAuthStateChanged(user => {
-            db.collection("tweets")
-              .doc()
-              .set({
-                content: tweetText,
-                imageUrl,
-                userId: user.uid,
-                createdAt: date.fromDate(new Date())
-              })
-              .then(() => {
-                store.dispatch(push("/twitter"));
-              });
-          });
+          const createdAt = date.fromDate(new Date());
+          const data = { content: tweetText, imageUrl, userId, createdAt };
+          sendTweetToDB(data, store, db);
         });
       });
     } else {
-      firebase.auth().onAuthStateChanged(user => {
-        db.collection("tweets")
-          .doc()
-          .set({
-            content: tweetText,
-            userId: user.uid,
-            createdAt: date.fromDate(new Date())
-          })
-          .then(() => {
-            store.dispatch(push("/twitter"));
-          });
-      });
+      const createdAt = date.fromDate(new Date());
+      const data = { content: tweetText, imageUrl: "", userId, createdAt };
+      sendTweetToDB(data, store, db);
     }
   }
 
@@ -57,6 +40,21 @@ const tweetMiddleware = store => next => action => {
       .limit(10)
       .onSnapshot(documentSnapshots => {
         store.dispatch(userTweets.onSnapshotMyTweet(documentSnapshots.docs));
+      });
+  }
+
+  if (action.type === userTweets.DISPLAY_LATEST_TWEET) {
+    const userId = store.getState().user.userCredential.uid;
+    db.collection("tweets")
+      .where("userId", "==", userId)
+      .orderBy("createdAt", "desc")
+      .limit(1)
+      .get()
+      .then(documentSnapshots => {
+        documentSnapshots.forEach(doc => {
+          const data = doc.data();
+          store.dispatch(userTweets.displayLatestTweets(data));
+        });
       });
   }
 };

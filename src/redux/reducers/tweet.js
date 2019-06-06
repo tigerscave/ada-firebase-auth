@@ -3,8 +3,8 @@ import { createAction } from "redux-actions";
 export const CREATE_TWEET = "CREATE_TWEET";
 export const createTweet = createAction(CREATE_TWEET);
 
-export const DISPLAY_TWEETS = "DISPLAY_TWEETS";
-export const displayTweets = createAction(DISPLAY_TWEETS);
+export const DISPLAY_LATEST_TWEET = "DISPLAY_LATEST_TWEET";
+export const displayLatestTweets = createAction(DISPLAY_LATEST_TWEET);
 
 export const MY_TWEET_LISTENER = "MY_TWEET_LISTENER";
 export const myTweetListener = createAction(MY_TWEET_LISTENER);
@@ -27,9 +27,11 @@ const reducer = (state = INITIAL_STATE, action) => {
       };
     }
 
-    case DISPLAY_TWEETS: {
+    case DISPLAY_LATEST_TWEET: {
+      const docs = action.payload;
       return {
-        ...state
+        ...state,
+        latestTweet: docs
       };
     }
 
