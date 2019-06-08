@@ -12,6 +12,12 @@ export const myTweetListener = createAction(MY_TWEET_LISTENER);
 export const ON_SNAPSHOT_MY_TWEET = "ON_SNAPSHOT_MY_TWEET";
 export const onSnapshotMyTweet = createAction(ON_SNAPSHOT_MY_TWEET);
 
+export const DELETE_MY_TWEET = "DELETE_MY_TWEET";
+export const deleteMyTweet = createAction(DELETE_MY_TWEET);
+
+export const EDIT_MY_TWEET = "EDIT_MY_TWEET";
+export const editMyTweet = createAction(EDIT_MY_TWEET);
+
 const INITIAL_STATE = {
   isLoading: false,
   latestTweet: null,
@@ -36,20 +42,29 @@ const reducer = (state = INITIAL_STATE, action) => {
     }
 
     case MY_TWEET_LISTENER: {
-      return {
-        ...state
-      };
+      return state;
     }
 
     case ON_SNAPSHOT_MY_TWEET: {
       const docs = action.payload;
       const myTweets = docs.map(doc => {
-        return doc.data();
+        return {
+          tweetId: doc.id,
+          ...doc.data()
+        };
       });
       return {
         ...state,
         myTweets
       };
+    }
+
+    case DELETE_MY_TWEET: {
+      return state;
+    }
+
+    case EDIT_MY_TWEET: {
+      return state;
     }
 
     default: {

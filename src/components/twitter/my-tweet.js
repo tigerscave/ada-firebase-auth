@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { displayLatestTweets } from "../../redux/reducers/tweet";
+import { displayLatestTweets, editMyTweet } from "../../redux/reducers/tweet";
 import PropTypes from "prop-types";
+import TweetContent from "./tweet-content";
 
 const DisplayLatestMyTweet = props => {
   const { displayLatestTweets, latestTweet, myTweets } = props;
@@ -15,15 +16,25 @@ const DisplayLatestMyTweet = props => {
       )}
       <button onClick={displayLatestTweets}>My Latest Tweet</button>
       <div>
-        <ul>
+        <ul className="tweets-list">
           {myTweets.map((tweet, index) => (
-            <li key={index}>
-              <p>{tweet.content}</p>
-              <img width="200" src={tweet.imageUrl} />
-            </li>
+            <TweetContent key={index} tweet={tweet} />
           ))}
         </ul>
       </div>
+      <style jsx>{`
+        .tweets-list {
+          width: 300px;
+        }
+        .tweet {
+          border: 2px solid gray;
+          margin-bottom: 10px;
+        }
+        i {
+          font-size: 16px;
+          margin: 5px 15px;
+        }
+      `}</style>
     </div>
   );
 };
@@ -38,7 +49,8 @@ const mapStateToProps = state => {
 
 const matDispatchToProps = dispatch => {
   return {
-    displayLatestTweets: () => dispatch(displayLatestTweets())
+    displayLatestTweets: () => dispatch(displayLatestTweets()),
+    onTweetEdit: id => dispatch(editMyTweet(id))
   };
 };
 
@@ -50,7 +62,7 @@ DisplayLatestMyTweet.propTypes = {
 
 DisplayLatestMyTweet.defaultProps = {
   latestTweet: {},
-  myTweets: {}
+  myTweets: []
 };
 
 export default connect(

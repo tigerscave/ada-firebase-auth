@@ -56,6 +56,36 @@ const tweetMiddleware = store => next => action => {
         });
       });
   }
+
+  if (action.type === userTweets.DELETE_MY_TWEET) {
+    const tweetId = action.payload;
+    db.collection("tweets")
+      .doc(tweetId)
+      .delete()
+      .then(() => {
+        alert("Tweet was deleted");
+      });
+  }
+
+  if (action.type === userTweets.EDIT_MY_TWEET) {
+    const { tweetId, content, image } = action.payload;
+    const date = firebase.firestore.Timestamp;
+    const storageRef = firebase.storage().ref();
+    if (image) {
+      const imagesRef = storageRef.child(`images/${image.name}`);
+      imagesRef.put(image).then(snapshot => {
+        snapshot.ref.getDownloadURL().then(imageUrl => {
+          const createdAt = date.fromDate(new Date());
+          db.collection("tweets")
+            .doc(tweetId)
+            .update({ content, createdAt, imageUrl })
+            .then(() => {
+              alert("Tweet edited ...");
+            });
+        });
+      });
+    }
+  }
 };
 
 export default tweetMiddleware;
