@@ -1,35 +1,71 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createUser } from "../redux/reducers/user";
+import { editUserDetail } from "../redux/reducers/usersDetail";
 
 const EditUserDetail = props => {
-  const [email, onEmailChanged] = useState("");
-  const [password, onPasswordChanged] = useState("");
-  const { onSignUpButtonClicked } = props;
+  const [userName, onUserNameChanged] = useState("");
+  const [familyName, onFamilyNameChanged] = useState("");
+  const [birthDay, onBirthDayChanged] = useState("");
+  const [biography, onBiographyChanged] = useState("");
+
+  const { onSubmitButtonClicked } = props;
   return (
     <div>
       <h1>User detail</h1>
-      <input
-        placeholder="email"
-        onChange={e => onEmailChanged(e.target.value)}
-        value={email}
-      />
-      <input
-        placeholder="password"
-        onChange={e => onPasswordChanged(e.target.value)}
-        value={password}
-      />
-
-      <button onClick={() => onSignUpButtonClicked({ email, password })}>
-        Sign up
+      <ul>
+        <li>
+          <input
+            placeholder="User Name"
+            onChange={e => onUserNameChanged(e.target.value)}
+            value={userName}
+          />
+        </li>
+        <li>
+          <input
+            placeholder="Family Name"
+            onChange={e => onFamilyNameChanged(e.target.value)}
+            value={familyName}
+          />
+        </li>
+        <li>
+          <input
+            placeholder="Birth Day"
+            onChange={e => onBirthDayChanged(e.target.value)}
+            value={birthDay}
+            type="date"
+          />
+        </li>
+        <li>
+          <textarea
+            placeholder="biography"
+            onChange={e => onBiographyChanged(e.target.value)}
+            value={biography}
+          />
+        </li>
+      </ul>
+      <button
+        onClick={() =>
+          onSubmitButtonClicked({ userName, familyName, birthDay, biography })
+        }
+      >
+        Submit
       </button>
     </div>
   );
 };
 
 EditUserDetail.propTypes = {
-  onSignUpButtonClicked: PropTypes.func.isRequired
+  onSubmitButtonClicked: PropTypes.func.isRequired
 };
 
-export default EditUserDetail;
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmitButtonClicked: cred => dispatch(editUserDetail(cred))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(EditUserDetail);

@@ -1,7 +1,7 @@
 import { createAction } from "redux-actions";
 
-export const USERS_DETAIL = "USERS_DETAIL";
-export const usersDetail = createAction(USERS_DETAIL);
+export const EDIT_USER_DETAIL = "EDIT_USER_DETAIL";
+export const editUserDetail = createAction(EDIT_USER_DETAIL);
 
 const INITIAL_STATE = {
   isLoading: false
@@ -9,7 +9,11 @@ const INITIAL_STATE = {
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case USERS_DETAIL: {
+    case EDIT_USER_DETAIL: {
+      return state;
+    }
+
+    default: {
       return state;
     }
   }
