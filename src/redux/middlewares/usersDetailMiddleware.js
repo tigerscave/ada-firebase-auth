@@ -17,42 +17,44 @@ const usersDetailMiddleware = store => next => action => {
       new Date(birthDay)
     );
 
-    let allUserName = [];
-    
-    db.collection("users").onSnapshot(querySnapshot => {
-      querySnapshot.forEach(query => {
-        const user = query.data();
-        if (user.userName) {
-          allUserName.push(user.userName);
-        }
+    const takeUserName = names => query => {
+      const user = query.data();
+      names.push(user.userName);
+    };
+
+    new Promise((resolve, reject) => {
+      db.collection("users").onSnapshot(resolve);
+    })
+      .then(snapshot => {
+        let names = [];
+        snapshot.forEach(takeUserName(names));
+        return names;
+      })
+      .then(names => {
+        names.every(name => {
+          if (name !== userName) {
+            db.collection("users")
+              .doc(userId)
+              .set({
+                userName,
+                familyName,
+                birthDay: birthDayTimeStamp,
+                biography
+              })
+              .then(() => {
+                alert("Edit User Detail succeed");
+                store.dispatch(push("/my-account"));
+              })
+              .catch(err => {
+                alert("Error: " + err.message);
+              });
+          } else {
+            alert(
+              "Failed: this use name already exist, please use another user name"
+            );
+          }
+        });
       });
-  
-      allUserName.every(name => {
-        if (name !== userName && userName) {
-          db.collection("users")
-            .doc(userId)
-            .set({
-              userName,
-              familyName,
-              birthDay: birthDayTimeStamp,
-              biography
-            })
-            .then(() => {
-              alert("Edit User Detail succeed");
-              store.dispatch(push("/my-account"));
-            })
-            .catch(err => {
-              alert("Error: " + err.message);
-            });
-        } else {
-          alert(
-            "Failed: this use name already exist, please use another user name"
-          );
-        }
-      });
-    });
-    console.log('hoge', userName, allUserName)
-    
   }
 };
 
