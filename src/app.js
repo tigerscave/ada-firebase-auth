@@ -11,6 +11,7 @@ import MyAccountPage from "./pages/my-account";
 import TwitterTop from "./pages/twitter";
 import PostTweetPage from "./pages/twitter/post-tweet";
 import MyTweetPage from "./pages/twitter/my-tweet";
+import EditUserDetail from "./pages/edit-user-detail";
 
 const Hello = () => (
   <div className="App">
@@ -39,6 +40,7 @@ function App() {
       <Route path="/welcome" component={WelcomePage} />
       <Route path="/sign-up" component={SignUpPage} />
       <Route path="/login" component={LoginPage} />
+      <Route path="/edit-user-detail" component={EditUserDetail} />
       <Route path="/top" component={TopPage} />
       <Route path="/my-account" component={MyAccountPage} />
       <Route path="/twitter" component={TwitterTop} />
