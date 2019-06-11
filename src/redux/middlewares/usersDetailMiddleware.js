@@ -56,6 +56,10 @@ const usersDetailMiddleware = store => next => action => {
         });
       });
   }
+
+  if (action.type === usersDetailAction.SEARCH_USER) {
+    console.log("Search action ... ", action.payload);
+  }
 };
 
 export default usersDetailMiddleware;
