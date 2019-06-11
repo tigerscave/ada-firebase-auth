@@ -1,4 +1,5 @@
 import * as usersDetailAction from "../reducers/usersDetail";
+import { push } from "connected-react-router";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -15,20 +16,43 @@ const usersDetailMiddleware = store => next => action => {
     const birthDayTimeStamp = firebase.firestore.Timestamp.fromDate(
       new Date(birthDay)
     );
-    db.collection("users")
-      .doc(userId)
-      .set({
-        userName,
-        familyName,
-        birthDay: birthDayTimeStamp,
-        biography
-      })
-      .then(() => {
-        alert("Edit User Detail succeed");
-      })
-      .catch(err => {
-        alert("Error: " + err.message);
+
+    let allUserName = [];
+    
+    db.collection("users").onSnapshot(querySnapshot => {
+      querySnapshot.forEach(query => {
+        const user = query.data();
+        if (user.userName) {
+          allUserName.push(user.userName);
+        }
       });
+  
+      allUserName.every(name => {
+        if (name !== userName && userName) {
+          db.collection("users")
+            .doc(userId)
+            .set({
+              userName,
+              familyName,
+              birthDay: birthDayTimeStamp,
+              biography
+            })
+            .then(() => {
+              alert("Edit User Detail succeed");
+              store.dispatch(push("/my-account"));
+            })
+            .catch(err => {
+              alert("Error: " + err.message);
+            });
+        } else {
+          alert(
+            "Failed: this use name already exist, please use another user name"
+          );
+        }
+      });
+    });
+    console.log('hoge', userName, allUserName)
+    
   }
 };
 
