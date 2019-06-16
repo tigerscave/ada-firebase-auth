@@ -5,7 +5,6 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
 import "firebase/firestore";
-
 const usersDetailMiddleware = store => next => action => {
   next(action);
   const db = firebase.firestore();
@@ -17,48 +16,38 @@ const usersDetailMiddleware = store => next => action => {
       new Date(birthDay)
     );
 
-    const takeUserName = names => query => {
-      const user = query.data();
-      names.push(user.userName);
-    };
-
-    new Promise((resolve, reject) => {
+    new Promise(resolve => {
       db.collection("users").onSnapshot(resolve);
     })
       .then(snapshot => {
-        let names = [];
-        snapshot.forEach(takeUserName(names));
-        return names;
-      })
-      .then(names => {
-        names.every(name => {
-          if (name !== userName) {
-            db.collection("users")
-              .doc(userId)
-              .set({
-                userName,
-                familyName,
-                birthDay: birthDayTimeStamp,
-                biography
-              })
-              .then(() => {
-                alert("Edit User Detail succeed");
-                store.dispatch(push("/my-account"));
-              })
-              .catch(err => {
-                alert("Error: " + err.message);
-              });
-          } else {
-            alert(
-              "Failed: this use name already exist, please use another user name"
-            );
-          }
+        let isExist = false;
+        snapshot.forEach(query => {
+          isExist = isExist || query.data().userName === userName;
         });
-      });
+        if (isExist) {
+          return Promise.reject(
+            "Failed: this use name already exist, please use another user name"
+          );
+        }
+        return db
+          .collection("users")
+          .doc(userId)
+          .set({
+            userName,
+            familyName,
+            birthDay: birthDay ? birthDayTimeStamp : null,
+            biography
+          });
+      })
+      .then(() => {
+        alert("Edit User Detail succeed");
+        store.dispatch(push("/my-account"));
+      })
+      .catch(err => alert(err));
   }
 
   if (action.type === usersDetailAction.SEARCH_USER) {
-    console.log("Search action ... ", action.payload);
+    db.collection("users").get();
   }
 };
 
