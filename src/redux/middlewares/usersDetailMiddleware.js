@@ -47,8 +47,38 @@ const usersDetailMiddleware = store => next => action => {
   }
 
   if (action.type === usersDetailAction.SEARCH_USER) {
-    db.collection("users").get();
+    const searchedName = action.payload;
+    //  const userId = store.getState().user.userCredential.uid;
+
+    new Promise(resolve => {
+      db.collection("users")
+        .get()
+        .then(resolve);
+    }).then(snapshot => {
+      let isExist = false;
+      let uid = null;
+
+      snapshot.forEach(query => {
+        isExist = isExist || query.data().userName === searchedName;
+        if (query.data().userName === searchedName) {
+          uid = query.id;
+        }
+      });
+      if (!isExist) {
+        return Promise.reject(`Failed: ${searchedName} User is not exist`);
+      }
+      return db
+        .collection("users")
+        .doc(uid)
+        .get()
+        .then(data => {
+          const searchedUser = data.data();
+          store.dispatch(usersDetailAction.searchUserSucceed(searchedUser));
+        })
+        .catch(err => {
+          alert("Error: " + err.message);
+        });
+    });
   }
 };
-
 export default usersDetailMiddleware;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SearchUser2 from "./search-user2";
 
 const TwitterTop = () => (
   <div>
@@ -26,6 +27,7 @@ const TwitterTop = () => (
       <Link to="/favorite">
         <p>Favorite tweet</p>
       </Link>
+      <SearchUser2 />
     </div>
     <style jsx>{`
       div.links {
