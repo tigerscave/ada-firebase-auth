@@ -15,6 +15,7 @@ import EditUserDetail from "./pages/edit-user-detail";
 import SearchUser from "./pages/twitter/search-user";
 
 import AnonymatterLogin from "./pages/anonymatter/login";
+import AnonymatterHome from "./pages/anonymatter/home";
 
 const Hello = () => (
   <div className="App">
@@ -56,6 +57,7 @@ function App() {
       <Route path="/my-tweet" component={MyTweetPage} />
       <Route path="/search-user" component={SearchUser} />
       <Route path="/anonymatter/login" component={AnonymatterLogin} />
+      <Route path="/anonymatter/home" component={AnonymatterHome} />
     </Router>
   );
 }
