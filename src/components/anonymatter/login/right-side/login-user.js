@@ -25,6 +25,7 @@ class LoginUser extends React.Component {
   }
 
   componentDidMount = () => {
+    // eslint-disable-next-line no-unused-vars
     const { checkUserAuth } = this.props;
     // checkUserAuth();
   };
