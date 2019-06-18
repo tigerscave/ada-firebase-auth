@@ -1,11 +1,14 @@
 import React from "react";
+import LoginLeftSide from "../../components/anonymatter/login/left-side";
+import LoginRightSide from "../../components/anonymatter/login/right-side";
 
 const AnonymatterLogin = () => (
   <div>
-    <h1>Login</h1>
+    <LoginLeftSide />
+    <LoginRightSide />
     <style jsx>{`
-      div.links {
-        padding-left: 2rem;
+      div {
+        display: flex;
       }
     `}</style>
   </div>
