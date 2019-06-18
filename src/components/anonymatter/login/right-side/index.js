@@ -6,7 +6,6 @@ const LoginRightSide = () => {
       <p>Login Right side</p>
       <style jsx>{`
         div {
-          background: red;
           flex: 1;
         }
       `}</style>

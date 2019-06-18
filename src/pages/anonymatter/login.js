@@ -9,6 +9,7 @@ const AnonymatterLogin = () => (
     <style jsx>{`
       div {
         display: flex;
+        min-height: 100vh;
       }
     `}</style>
   </div>
