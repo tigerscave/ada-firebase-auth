@@ -21,8 +21,7 @@ const DescriptionPanel = props => {
 
 DescriptionPanel.propTypes = {
   title: PropTypes.string.isRequired,
-  iconName: PropTypes.string.isRequired,
-  checkUserAuth: PropTypes.func.isRequired
+  iconName: PropTypes.string.isRequired
 };
 
 export default DescriptionPanel;
