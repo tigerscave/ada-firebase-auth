@@ -33,12 +33,12 @@ const authMiddleware = store => next => action => {
         store.dispatch(loginAction.loginSuccess());
         store.dispatch(tweetAction.myTweetListener(user));
         store.dispatch(userAction.setUser(user));
-        store.dispatch(push("/top"));
+        store.dispatch(push("/anonymatter/home"));
       })
       .catch(() => {
         alert("login failed");
         store.dispatch(loginAction.loginFailed());
-        store.dispatch(push("/welcome"));
+        store.dispatch(push("/"));
       });
   }
 
@@ -48,7 +48,7 @@ const authMiddleware = store => next => action => {
         store.dispatch(loginAction.loginSuccess());
         store.dispatch(userAction.setUser(user));
         store.dispatch(tweetAction.myTweetListener(user));
-        store.dispatch(push("/top"));
+        store.dispatch(push("/anonymatter/home"));
       } else {
         store.dispatch(loginAction.loginFailed());
       }
