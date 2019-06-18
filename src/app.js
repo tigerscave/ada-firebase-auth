@@ -12,6 +12,7 @@ import TwitterTop from "./pages/twitter";
 import PostTweetPage from "./pages/twitter/post-tweet";
 import MyTweetPage from "./pages/twitter/my-tweet";
 import EditUserDetail from "./pages/edit-user-detail";
+import SearchUser from "./pages/twitter/search-user";
 
 const Hello = () => (
   <div className="App">
@@ -46,6 +47,7 @@ function App() {
       <Route path="/twitter" component={TwitterTop} />
       <Route path="/post-tweet" component={PostTweetPage} />
       <Route path="/my-tweet" component={MyTweetPage} />
+      <Route path="/search-user" component={SearchUser} />
     </Router>
   );
 }
