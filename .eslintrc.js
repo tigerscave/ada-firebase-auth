@@ -27,7 +27,8 @@ module.exports = {
     document: true,
     window: true,
     alert: true,
-    process: true
+    process: true,
+    Promise: true
   },
   settings: {
     react: {

@@ -14,6 +14,8 @@ import MyTweetPage from "./pages/twitter/my-tweet";
 import EditUserDetail from "./pages/edit-user-detail";
 import SearchUser from "./pages/twitter/search-user";
 
+import AnonymatterLogin from "./pages/anonymatter/login";
+
 const Hello = () => (
   <div className="App">
     <header className="App-header">
@@ -22,14 +24,19 @@ const Hello = () => (
       <Link className="App-link" to="/welcome">
         <p>React-Redux Sample</p>
       </Link>
-      <a
-        className="App-link"
-        href="../vanilla-js-sample"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Vanilla JS Sample
-      </a>
+      <Link className="App-link" to="/anonymatter/login">
+        <p>Anonymatter</p>
+      </Link>
+      <p>
+        <a
+          className="App-link"
+          href="../vanilla-js-sample"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Vanilla JS Sample
+        </a>
+      </p>
     </header>
   </div>
 );
@@ -48,6 +55,7 @@ function App() {
       <Route path="/post-tweet" component={PostTweetPage} />
       <Route path="/my-tweet" component={MyTweetPage} />
       <Route path="/search-user" component={SearchUser} />
+      <Route path="/anonymatter/login" component={AnonymatterLogin} />
     </Router>
   );
 }
