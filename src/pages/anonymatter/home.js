@@ -1,12 +1,12 @@
 import React from "react";
+import AnonymatterNavBar from "../../components/anonymatter/navbar";
 
 const AnonymatterHome = () => (
   <div>
+    <AnonymatterNavBar />
     <h1>Home page</h1>
     <style jsx>{`
       div {
-        display: flex;
-        min-height: 100vh;
       }
     `}</style>
   </div>
