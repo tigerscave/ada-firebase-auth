@@ -4,10 +4,10 @@ import { displayLatestTweets, editMyTweet } from "../../redux/reducers/tweet";
 import PropTypes from "prop-types";
 import TweetContent from "./tweet-content";
 
-const DisplayLatestMyTweet = props => {
+const DisplayTweets = props => {
   const { displayLatestTweets, latestTweet, myTweets } = props;
   return (
-    <div>
+    <div className="container">
       <h1>Display tweets component</h1>
       {latestTweet && (
         <div>
@@ -23,6 +23,10 @@ const DisplayLatestMyTweet = props => {
         </ul>
       </div>
       <style jsx>{`
+        .container {
+          margin: auto;
+          width: 50%;
+        }
         .tweets-list {
           width: 300px;
         }
@@ -54,13 +58,13 @@ const matDispatchToProps = dispatch => {
   };
 };
 
-DisplayLatestMyTweet.propTypes = {
+DisplayTweets.propTypes = {
   displayLatestTweets: PropTypes.func.isRequired,
   latestTweet: PropTypes.shape(),
   myTweets: PropTypes.shape()
 };
 
-DisplayLatestMyTweet.defaultProps = {
+DisplayTweets.defaultProps = {
   latestTweet: {},
   myTweets: []
 };
@@ -68,4 +72,4 @@ DisplayLatestMyTweet.defaultProps = {
 export default connect(
   mapStateToProps,
   matDispatchToProps
-)(DisplayLatestMyTweet);
+)(DisplayTweets);

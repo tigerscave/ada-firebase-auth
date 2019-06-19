@@ -1,10 +1,12 @@
 import React from "react";
 import AnonymatterNavBar from "../../components/anonymatter/navbar";
+import DisplayTweets from "../../components/twitter/tweets";
 
 const AnonymatterHome = () => (
   <div>
     <AnonymatterNavBar />
-    <h1>Home page</h1>
+
+    <DisplayTweets />
     <style jsx>{`
       div {
       }
