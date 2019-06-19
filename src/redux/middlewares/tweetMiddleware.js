@@ -10,7 +10,7 @@ const tweetMiddleware = store => next => action => {
   const db = firebase.firestore();
 
   if (action.type === userTweets.CREATE_TWEET) {
-    const { tweetText, image } = action.payload;
+    const { tweetText, image, tag } = action.payload;
     const date = firebase.firestore.Timestamp;
     const storageRef = firebase.storage().ref();
     const userId = store.getState().user.userCredential.uid;
@@ -19,13 +19,13 @@ const tweetMiddleware = store => next => action => {
       imagesRef.put(image).then(snapshot => {
         snapshot.ref.getDownloadURL().then(imageUrl => {
           const createdAt = date.fromDate(new Date());
-          const data = { content: tweetText, imageUrl, userId, createdAt };
+          const data = { content: tweetText, imageUrl, userId, createdAt, tag };
           sendTweetToDB(data, store, db);
         });
       });
     } else {
       const createdAt = date.fromDate(new Date());
-      const data = { content: tweetText, imageUrl: "", userId, createdAt };
+      const data = { content: tweetText, imageUrl: "", userId, createdAt, tag };
       sendTweetToDB(data, store, db);
     }
   }
