@@ -1,9 +1,11 @@
 import React from "react";
-import LogoProfilePanel from "../login/right-side/logo-profile-panel";
 
 const DashboardProfile = () => (
   <div className="container">
-    <LogoProfilePanel />
+    <div>
+      <i className="fas fa-user-circle" />
+      <p>@no_name</p>
+    </div>
     <table>
       <tr>
         <th>Tweets</th>
