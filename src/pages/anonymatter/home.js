@@ -3,14 +3,19 @@ import AnonymatterNavBar from "../../components/anonymatter/navbar";
 import DisplayTweets from "../../components/anonymatter/anonymatter-twitter/tweets";
 import PostTweet from "../../components/anonymatter/anonymatter-twitter/post-tweet";
 import { darkGray } from "../../styles/color";
+import MyAccountPage from "./my-account";
 
 const AnonymatterHome = () => (
   <div>
     <AnonymatterNavBar />
+    <div>
+      <MyAccountPage />
+    </div>
     <div className="tweetsContainer">
       <PostTweet />
       <DisplayTweets />
     </div>
+
     <style jsx>{`
       .tweetsContainer {
         margin: auto;
