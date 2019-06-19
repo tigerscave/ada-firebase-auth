@@ -9,8 +9,8 @@ const NavBarTab = props => {
       <i className={iconName} />
       <p>{title}</p>
       <style jsx>{`
-        display: flex;
         div {
+          display: flex;
           flex: 1;
           color: ${strBlack};
           justify-content: center;
