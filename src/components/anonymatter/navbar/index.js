@@ -2,11 +2,15 @@ import React from "react";
 import NavBarTab from "./nav-bar-tab";
 import { darkGray } from "../../../styles/color";
 import SearchArea from "./search-area";
+import logoImage from "../../../static/icons/logo.png";
 
 const AnonymatterNavBar = () => (
   <div className="container">
     <NavBarTab iconName="fa fa-home" title="Home" />
     <NavBarTab iconName="fas fa-bell" title="Notification" />
+    <div className="logo">
+      <img src={logoImage} width="40" />
+    </div>
     <SearchArea />
     <NavBarTab iconName="fas fa-user-circle" title="" />
     <style jsx>{`
