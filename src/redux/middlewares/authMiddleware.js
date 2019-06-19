@@ -63,7 +63,7 @@ const authMiddleware = store => next => action => {
         alert("logout success!");
         store.dispatch(logoutAction.logoutSuccess());
         store.dispatch(userAction.clearUser());
-        store.dispatch(push("/welcome"));
+        store.dispatch(push("/anonymatter/login"));
       })
       .catch(() => {
         store.dispatch(logoutAction.logoutFailed());

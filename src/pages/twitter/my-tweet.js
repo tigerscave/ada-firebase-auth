@@ -1,5 +1,5 @@
 import React from "react";
-import DisplayLatestMyTweet from "../../components/twitter/my-tweet";
+import DisplayLatestMyTweet from "../../components/twitter/tweets";
 
 const MyTweetPage = () => (
   <div>

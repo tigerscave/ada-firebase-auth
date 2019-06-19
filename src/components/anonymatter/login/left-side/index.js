@@ -3,23 +3,30 @@ import DescriptionPanel from "./description-panel";
 import { backgroundBlue } from "../../../../styles/color";
 const LoginLeftSide = () => {
   return (
-    <div>
-      <DescriptionPanel
-        iconName="fas fa-user-circle"
-        title="Tweet without username"
-      />
-      <DescriptionPanel
-        iconName="fas fa-trash"
-        title="Tweet without username"
-      />
-      <DescriptionPanel
-        iconName="fas fa-hashtag"
-        title="Tweet without username"
-      />
+    <div className="container">
+      <div className="content">
+        <DescriptionPanel
+          iconName="fas fa-user-circle"
+          title="Tweet without username."
+        />
+        <DescriptionPanel
+          iconName="fas fa-trash"
+          title="Your tweets will be deleted in 7 days."
+        />
+        <DescriptionPanel
+          iconName="fas fa-hashtag"
+          title="Find friend by hashtag."
+        />
+      </div>
       <style jsx>{`
-        div {
+        div.container {
           flex: 1;
           background: ${backgroundBlue};
+        }
+
+        div.content {
+          margin-left: 200px;
+          margin-top: 200px;
         }
       `}</style>
     </div>

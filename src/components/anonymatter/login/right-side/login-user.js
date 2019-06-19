@@ -26,7 +26,7 @@ class LoginUser extends React.Component {
 
   componentDidMount = () => {
     const { checkUserAuth } = this.props;
-    // checkUserAuth();
+    checkUserAuth();
   };
 
   render() {
