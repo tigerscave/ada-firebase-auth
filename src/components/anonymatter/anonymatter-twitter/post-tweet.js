@@ -10,7 +10,8 @@ class PostTweet extends React.Component {
     this.state = {
       tweetText: "",
       selectedImage: "",
-      image: ""
+      image: "",
+      tag: ""
     };
 
     this.onTweetImageChange = e => {
@@ -28,11 +29,18 @@ class PostTweet extends React.Component {
 
     this.onTweetButtonClicked = () => {
       const { onPostTweet } = this.props;
-      const { tweetText, image } = this.state;
-      onPostTweet({ tweetText, image });
+      const { tweetText, image, tag } = this.state;
+      onPostTweet({ tweetText, image, tag });
       this.setState({
         tweetText: "",
-        selectedImage: ""
+        selectedImage: "",
+        tag: ""
+      });
+    };
+
+    this.onTagInputChanged = e => {
+      this.setState({
+        tag: e.target.value
       });
     };
   }
@@ -49,6 +57,7 @@ class PostTweet extends React.Component {
             value={tweetText}
             cols="70"
           />
+          <input placeholder="tag" onChange={this.onTagInputChanged} />
         </div>
         <div>
           <img width="250" src={selectedImage} />
@@ -82,7 +91,7 @@ class PostTweet extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onPostTweet: cred => dispatch(createTweet(cred))
+    onPostTweet: tweetData => dispatch(createTweet(tweetData))
   };
 };
 
