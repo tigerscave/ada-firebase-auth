@@ -4,6 +4,7 @@ import DisplayTweets from "../../components/anonymatter/anonymatter-twitter/twee
 import PostTweet from "../../components/anonymatter/anonymatter-twitter/post-tweet";
 import { darkGray } from "../../styles/color";
 import MyAccountPage from "./my-account";
+import DashboardProfile from "../../components/anonymatter/my-account/dashboard-profile";
 
 const AnonymatterHome = () => (
   <div>
@@ -11,14 +12,18 @@ const AnonymatterHome = () => (
     <div>
       <MyAccountPage />
     </div>
-    <div className="tweetsContainer">
-      <PostTweet />
-      <DisplayTweets />
+    <div className="contentContainer">
+      <DashboardProfile />
+      <div className="tweetsContainer">
+        <PostTweet />
+        <DisplayTweets />
+      </div>
     </div>
-
     <style jsx>{`
+      .contentContainer {
+        display: flex;
+      }
       .tweetsContainer {
-        margin: auto;
         width: 50%;
         margin-top: 15px;
         padding: 15px;
