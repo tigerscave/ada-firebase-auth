@@ -57,12 +57,13 @@ class PostTweet extends React.Component {
             value={tweetText}
             cols="70"
           />
-          <input placeholder="tag" onChange={this.onTagInputChanged} />
         </div>
         <div>
+          <span>#</span>
+          <input placeholder="tag" onChange={this.onTagInputChanged} />
           <img width="250" src={selectedImage} />
           <input onChange={this.onTweetImageChange} type="file" />
-          <button onClick={this.onTweetButtonClicked}>Post my tweet</button>
+          <button onClick={this.onTweetButtonClicked}>Tweet</button>
         </div>
         <style jsx>{`
           .container {
