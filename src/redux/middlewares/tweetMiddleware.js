@@ -86,6 +86,23 @@ const tweetMiddleware = store => next => action => {
       });
     }
   }
+
+  if (action.type === userTweets.SEARCH_TWEET_TAG) {
+    const searchText = action.payload;
+    db.collection("tweets")
+      .orderBy("tag")
+      .startAt(searchText)
+      .endAt(searchText + "\uf8ff")
+      .get()
+      .then(documentSnapshots => {
+        let searchedTweetsTag = [];
+        documentSnapshots.forEach(doc => {
+          const data = doc.data();
+          searchedTweetsTag.push(data);
+        });
+        store.dispatch(userTweets.searchTweetTagSucceed(searchedTweetsTag));
+      });
+  }
 };
 
 export default tweetMiddleware;

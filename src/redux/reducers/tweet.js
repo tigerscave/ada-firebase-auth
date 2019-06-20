@@ -18,10 +18,18 @@ export const deleteMyTweet = createAction(DELETE_MY_TWEET);
 export const EDIT_MY_TWEET = "EDIT_MY_TWEET";
 export const editMyTweet = createAction(EDIT_MY_TWEET);
 
+export const SEARCH_TWEET_TAG = "SEARCH_TWEET_TAG";
+export const searchTweetTag = createAction(SEARCH_TWEET_TAG);
+
+export const SEARCH_TWEET_TAG_SUCCEED = "SEARCH_TWEET_TAG_SUCCEED";
+export const searchTweetTagSucceed = createAction(SEARCH_TWEET_TAG_SUCCEED);
+
 const INITIAL_STATE = {
   isLoading: false,
+  isSearching: false,
   latestTweet: null,
-  myTweets: []
+  myTweets: [],
+  searchedTweetsTag: null
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -67,10 +75,27 @@ const reducer = (state = INITIAL_STATE, action) => {
       return state;
     }
 
+    case SEARCH_TWEET_TAG: {
+      return {
+        ...state,
+        isSearching: true
+      };
+    }
+
+    case SEARCH_TWEET_TAG_SUCCEED: {
+      const searchedTweetsTag = action.payload;
+      return {
+        ...state,
+        searchedTweetsTag,
+        isSearching: false
+      };
+    }
+
     default: {
       return {
         ...state,
-        isLoading: false
+        isLoading: false,
+        isSearching: false
       };
     }
   }
