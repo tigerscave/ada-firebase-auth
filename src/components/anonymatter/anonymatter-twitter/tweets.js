@@ -57,14 +57,15 @@ const matDispatchToProps = dispatch => {
 };
 
 DisplayTweets.propTypes = {
-  myTweets: PropTypes.shape(),
+  myTweets: PropTypes.array,
   isSearching: PropTypes.bool,
-  searchedTweetsTag: PropTypes.shape()
+  searchedTweetsTag: PropTypes.array
 };
 
 DisplayTweets.defaultProps = {
   myTweets: [],
-  searchedTweetsTag: []
+  searchedTweetsTag: [],
+  isSearching: false
 };
 
 export default connect(
