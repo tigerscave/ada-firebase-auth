@@ -9,21 +9,47 @@ import PropTypes from "prop-types";
 
 const TweetContent = props => {
   const { onDeleteButtonClicked, tweet } = props;
+  const date = tweet.createdAt.toDate();
+  const formattedDate =
+    date.getFullYear() +
+    "-" +
+    (date.getMonth() + 1) +
+    "-" +
+    date.getDate() +
+    " " +
+    date.getHours() +
+    ":" +
+    String(date.getMinutes()).padStart(2, "0");
   return (
     <li className="tweet">
-      <p>{tweet.content}</p>
-      <img width="200" src={tweet.imageUrl} />
       <div>
-        <button onClick={() => onDeleteButtonClicked(tweet.tweetId)}>
-          <i className="far fa-trash-alt" />
-        </button>
+        <i className="fas fa-user-circle" />
+        <span>no_name</span>
+        <span> . </span>
+        <span>{formattedDate}</span>
+      </div>
+      <div>
+        <p>{tweet.content}</p>
+        <img width="200" src={tweet.imageUrl} />
+        <div>
+          <button onClick={() => onDeleteButtonClicked(tweet.tweetId)}>
+            <i className="far fa-trash-alt" />
+          </button>
+        </div>
+      </div>
+      <div>
+        <span>#{tweet.tag}</span>
+        <span>
+          <i className="fas fa-heart" />
+          <i className="far fa-heart" />
+        </span>
       </div>
       <style jsx>{`
         .tweets-list {
-          width: 300px;
+          ///  width: 300px;
         }
         .tweet {
-          border: 2px solid gray;
+          //    border: 2px solid gray;
           margin-bottom: 10px;
         }
         i {

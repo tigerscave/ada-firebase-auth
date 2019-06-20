@@ -3,17 +3,24 @@ import { connect } from "react-redux";
 import { editMyTweet } from "../../../redux/reducers/tweet";
 import PropTypes from "prop-types";
 import TweetContent from "./tweet-content";
+import PostTweet from "./post-tweet";
 
 const DisplayTweets = props => {
-  const { myTweets } = props;
+  const { myTweets, isSearching, searchedTweetsTag } = props;
+  const tweets = searchedTweetsTag ? searchedTweetsTag : myTweets;
   return (
     <div className="container">
+      {!searchedTweetsTag && <PostTweet />}
       <div>
-        <ul className="tweets-list">
-          {myTweets.map((tweet, index) => (
-            <TweetContent key={index} tweet={tweet} />
-          ))}
-        </ul>
+        {isSearching ? (
+          <p>searching ...</p>
+        ) : (
+          <ul className="tweets-list">
+            {tweets.map((tweet, index) => (
+              <TweetContent key={index} tweet={tweet} />
+            ))}
+          </ul>
+        )}
       </div>
       <style jsx>{`
         .container {
@@ -35,9 +42,11 @@ const DisplayTweets = props => {
 };
 
 const mapStateToProps = state => {
-  const { myTweets } = state.postTweet;
+  const { myTweets, isSearching, searchedTweetsTag } = state.postTweet;
   return {
-    myTweets
+    myTweets,
+    isSearching,
+    searchedTweetsTag
   };
 };
 
@@ -48,11 +57,15 @@ const matDispatchToProps = dispatch => {
 };
 
 DisplayTweets.propTypes = {
-  myTweets: PropTypes.shape()
+  myTweets: PropTypes.array,
+  isSearching: PropTypes.bool,
+  searchedTweetsTag: PropTypes.array
 };
 
 DisplayTweets.defaultProps = {
-  myTweets: []
+  myTweets: [],
+  searchedTweetsTag: [],
+  isSearching: false
 };
 
 export default connect(

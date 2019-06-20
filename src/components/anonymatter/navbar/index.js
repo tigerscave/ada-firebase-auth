@@ -3,6 +3,7 @@ import NavBarTab from "./nav-bar-tab";
 import { darkGray } from "../../../styles/color";
 import SearchArea from "./search-area";
 import logoImage from "../../../static/icons/logo.png";
+import UserIconTab from "./user-icon-tab";
 
 const AnonymatterNavBar = () => (
   <div className="container">
@@ -12,7 +13,7 @@ const AnonymatterNavBar = () => (
       <img src={logoImage} width="40" />
     </div>
     <SearchArea />
-    <NavBarTab iconName="fas fa-user-circle" title="" />
+    <UserIconTab />
     <style jsx>{`
       .container {
         display: flex;

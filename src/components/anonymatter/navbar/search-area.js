@@ -1,7 +1,7 @@
 import React from "react";
-
-import firebase from "firebase/app";
-import "firebase/firestore";
+import PropTypes from "prop-types";
+import { searchTweetTag } from "../../../redux/reducers/tweet";
+import { connect } from "react-redux";
 
 class SearchArea extends React.Component {
   constructor(props) {
@@ -18,21 +18,10 @@ class SearchArea extends React.Component {
     };
 
     this.onKeyPress = e => {
-      const db = firebase.firestore();
       const { searchText } = this.state;
+      const { onSearchTweetTag } = this.props;
       if (e.key === "Enter") {
-        db.collection("tweets")
-          .orderBy("tag")
-          .startAt(searchText)
-          .endAt(searchText + "\uf8ff")
-          .get()
-          .then(documentSnapshots => {
-            documentSnapshots.forEach(doc => {
-              const data = doc.data();
-              // eslint-disable-next-line no-console
-              console.log(data);
-            });
-          });
+        onSearchTweetTag(searchText);
       }
     };
   }
@@ -64,4 +53,17 @@ class SearchArea extends React.Component {
   }
 }
 
-export default SearchArea;
+const matDispatchToProps = dispatch => {
+  return {
+    onSearchTweetTag: tagName => dispatch(searchTweetTag(tagName))
+  };
+};
+
+SearchArea.propTypes = {
+  onSearchTweetTag: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  matDispatchToProps
+)(SearchArea);

@@ -5,7 +5,10 @@ const MyAccountPage = () => {
   const [isModalShown, toggleModal] = useState(false);
   return (
     <div>
-      <button onClick={() => toggleModal(true)}>LOGOUT</button>
+      <div onClick={() => toggleModal(true)}>
+        <i className="fas fa-sign-out-alt" />
+        <p>Logout</p>
+      </div>
       {isModalShown && <LogoutModal toggleModal={toggleModal} />}
     </div>
   );
