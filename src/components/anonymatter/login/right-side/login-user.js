@@ -40,17 +40,16 @@ class LoginUser extends React.Component {
           <div>
             <p className="email">Email</p>
             <input
-              placeholder="email"
-              onChange={this.onEmailChanged}
-              value={email}
+              placeholder="xxx@example.com"
+              //onChange={this.onEmailChanged}
+              //value={email}
             />
           </div>
           <div>
             <p>Password</p>
             <input
-              placeholder="password"
-              onChange={this.onPasswordChanged}
-              value={password}
+            onChange={this.onPasswordChanged}
+            value={password}
             />
             <p>Forgot password?</p>
           </div>
@@ -65,6 +64,11 @@ class LoginUser extends React.Component {
             color: ${accent};
             font-weight: bold;
           }
+          input {
+            padding: 20px 20px;
+
+          }
+
         `}</style>
       </div>
     );

@@ -10,7 +10,7 @@ const LogoProfilePanel = () => {
       <style jsx>{`
         div {
           //  flex: 1;
-          //  background: yellow;
+          background: yellow;
         }
       `}</style>
     </div>
