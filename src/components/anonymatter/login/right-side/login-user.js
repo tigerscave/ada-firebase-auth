@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { userLogin, checkUserAuth } from "../../../../redux/reducers/login";
+import { backgroundBlue, accent, darkGray } from "../../../../styles/color";
 
 class LoginUser extends React.Component {
   constructor(props) {
@@ -34,10 +35,10 @@ class LoginUser extends React.Component {
     const { onLoginButtonClicked, isLoading } = this.props;
     return (
       <div>
-        {isLoading ? <h1>... Loading ...</h1> : <h1>Login</h1>}
+        {isLoading && <h1>... Loading ...</h1>}
         <div>
           <div>
-            <p>Email</p>
+            <p className="email">Email</p>
             <input
               placeholder="email"
               onChange={this.onEmailChanged}
@@ -51,6 +52,7 @@ class LoginUser extends React.Component {
               onChange={this.onPasswordChanged}
               value={password}
             />
+            <p>Forgot password?</p>
           </div>
           <input
             value="LOGIN"
@@ -59,8 +61,9 @@ class LoginUser extends React.Component {
           />
         </div>
         <style jsx>{`
-          h1 {
-            color: blue;
+          p.email {
+            color: ${accent};
+            font-weight: bold;
           }
         `}</style>
       </div>
