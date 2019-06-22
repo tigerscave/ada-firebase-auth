@@ -97,7 +97,10 @@ const tweetMiddleware = store => next => action => {
       .then(documentSnapshots => {
         let searchedTweetsTag = [];
         documentSnapshots.forEach(doc => {
-          const data = doc.data();
+          const data = {
+            tweetId: doc.id,
+            ...doc.data()
+          };
           searchedTweetsTag.push(data);
         });
         store.dispatch(userTweets.searchTweetTagSucceed(searchedTweetsTag));

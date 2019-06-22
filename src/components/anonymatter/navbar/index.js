@@ -7,8 +7,16 @@ import UserIconTab from "./user-icon-tab";
 
 const AnonymatterNavBar = () => (
   <div className="container">
-    <NavBarTab iconName="fa fa-home" title="Home" />
-    <NavBarTab iconName="fas fa-bell" title="Notification" />
+    <NavBarTab
+      iconName="fa fa-home"
+      title="Home"
+      onClicked={() => alert("Not implement yet")}
+    />
+    <NavBarTab
+      iconName="fas fa-bell"
+      title="Notification"
+      onClicked={() => alert("Not implement yet")}
+    />
     <div className="logo">
       <img src={logoImage} width="40" />
     </div>
