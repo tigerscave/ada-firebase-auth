@@ -11,26 +11,50 @@ class Users extends React.Component {
       users: []
     };
 
-    this.followButtonClicked = uid => {
+    this.followButtonClicked = async uid => {
       const { myId } = this.props;
 
       const db = firebase.firestore();
-      db.collection("users")
+      const docSnapshot = await db
+        .collection("users")
         .doc(myId)
-        .update({
-          followee: firebase.firestore.FieldValue.arrayUnion(uid)
-        });
+        .get();
+      if (docSnapshot.exists) {
+        db.collection("users")
+          .doc(myId)
+          .update({
+            followee: firebase.firestore.FieldValue.arrayUnion(uid)
+          });
+      } else {
+        db.collection("users")
+          .doc(myId)
+          .set({
+            followee: [uid]
+          });
+      }
     };
 
-    this.unfollowButtonClicked = uid => {
+    this.unfollowButtonClicked = async uid => {
       const { myId } = this.props;
 
       const db = firebase.firestore();
-      db.collection("users")
+      const docSnapshot = await db
+        .collection("users")
         .doc(myId)
-        .update({
-          followee: firebase.firestore.FieldValue.arrayRemove(uid)
-        });
+        .get();
+      if (docSnapshot.exists) {
+        db.collection("users")
+          .doc(myId)
+          .update({
+            followee: firebase.firestore.FieldValue.arrayRemove(uid)
+          });
+      } else {
+        db.collection("users")
+          .doc(myId)
+          .set({
+            followee: []
+          });
+      }
     };
   }
 
