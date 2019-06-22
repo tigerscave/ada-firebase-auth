@@ -90,6 +90,7 @@ const tweetMiddleware = store => next => action => {
     const searchText = action.payload;
     db.collection("tweets")
       .orderBy("tag")
+      .orderBy("createdAt", "desc")
       .startAt(searchText)
       .endAt(searchText + "\uf8ff")
       .onSnapshot(snapshot => {
