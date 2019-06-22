@@ -1,4 +1,5 @@
 import React from "react";
+import Users from "./users";
 
 const DashboardProfile = () => (
   <div className="container">
@@ -18,6 +19,7 @@ const DashboardProfile = () => (
         <td>75</td>
       </tr>
     </table>
+    <Users />
     <style jsx>{`
       .container {
         width: 25%;
