@@ -8,16 +8,20 @@ const DashboardProfile = () => (
       <p>@no_name</p>
     </div>
     <table>
-      <tr>
-        <th>Tweets</th>
-        <th>Following</th>
-        <th>Followers</th>
-      </tr>
-      <tr>
-        <td>92</td>
-        <td>80</td>
-        <td>75</td>
-      </tr>
+      <thead>
+        <tr>
+          <th>Tweets</th>
+          <th>Following</th>
+          <th>Followers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>92</td>
+          <td>80</td>
+          <td>75</td>
+        </tr>
+      </tbody>
     </table>
     <Users />
     <style jsx>{`
