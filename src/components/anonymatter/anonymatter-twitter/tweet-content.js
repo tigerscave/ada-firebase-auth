@@ -6,6 +6,7 @@ import {
 } from "../../../redux/reducers/tweet";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import LikeIcons from "./like-icons";
 
 const TweetContent = props => {
   const { onDeleteButtonClicked, tweet } = props;
@@ -39,10 +40,7 @@ const TweetContent = props => {
       </div>
       <div>
         <span>#{tweet.tag}</span>
-        <span>
-          <i className="fas fa-heart" />
-          <i className="far fa-heart" />
-        </span>
+        <LikeIcons tweetId={tweet.tweetId} />
       </div>
       <style jsx>{`
         .tweets-list {
