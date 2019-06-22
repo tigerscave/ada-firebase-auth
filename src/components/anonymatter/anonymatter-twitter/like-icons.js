@@ -11,18 +11,43 @@ class LikeIcons extends React.Component {
       isTweetLiked: false
     };
 
-    this.onLikeClicked = () => {
+    this.updateFeed = async isLiked => {
+      const db = firebase.firestore();
+      const { myId, tweet } = this.props;
+      const userDoc = db.collection("users").doc(myId);
+      const userSnapshot = await userDoc.get();
+      const followerWithMyId = [...userSnapshot.data().follower, myId];
+      followerWithMyId.map(async uid => {
+        if (isLiked) {
+          await db
+            .collection(`users/${uid}/feed`)
+            .doc(tweet.tweetId)
+            .update({
+              likedUsers: firebase.firestore.FieldValue.arrayUnion(myId)
+            });
+        } else {
+          await db
+            .collection(`users/${uid}/feed`)
+            .doc(tweet.tweetId)
+            .update({
+              likedUsers: firebase.firestore.FieldValue.arrayRemove(myId)
+            });
+        }
+      });
+    };
+
+    this.onLikeClicked = async () => {
       const { tweet, myId } = this.props;
       const { tweetId } = tweet;
       const db = firebase.firestore();
-      db.collection("tweets")
+      await db
+        .collection("tweets")
         .doc(tweetId)
         .update({
           likedUsers: firebase.firestore.FieldValue.arrayUnion(myId)
         });
-      this.setState({
-        isTweetLiked: true
-      });
+
+      this.updateFeed(true);
     };
 
     this.onDislikeClicked = () => {
@@ -34,9 +59,8 @@ class LikeIcons extends React.Component {
         .update({
           likedUsers: firebase.firestore.FieldValue.arrayRemove(myId)
         });
-      this.setState({
-        isTweetLiked: false
-      });
+
+      this.updateFeed(false);
     };
   }
 

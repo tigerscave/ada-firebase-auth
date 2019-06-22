@@ -11,37 +11,80 @@ class Users extends React.Component {
       users: []
     };
 
-    this.followButtonClicked = uid => {
+    this.followButtonClicked = async uid => {
       const { myId } = this.props;
 
       const db = firebase.firestore();
-      db.collection("users")
+      const docSnapshot = await db
+        .collection("users")
         .doc(myId)
-        .update({
-          followee: firebase.firestore.FieldValue.arrayUnion(uid)
-        });
+        .get();
+      if (docSnapshot.exists) {
+        await db
+          .collection("users")
+          .doc(myId)
+          .update({
+            followee: firebase.firestore.FieldValue.arrayUnion(uid)
+          });
+        await db
+          .collection("users")
+          .doc(uid)
+          .update({
+            follower: firebase.firestore.FieldValue.arrayUnion(myId)
+          });
+      } else {
+        await db
+          .collection("users")
+          .doc(myId)
+          .set({
+            followee: [uid]
+          });
+      }
     };
 
-    this.unfollowButtonClicked = uid => {
+    this.unfollowButtonClicked = async uid => {
       const { myId } = this.props;
 
       const db = firebase.firestore();
-      db.collection("users")
+      const docSnapshot = await db
+        .collection("users")
         .doc(myId)
-        .update({
-          followee: firebase.firestore.FieldValue.arrayRemove(uid)
-        });
+        .get();
+      if (docSnapshot.exists) {
+        await db
+          .collection("users")
+          .doc(myId)
+          .update({
+            followee: firebase.firestore.FieldValue.arrayRemove(uid)
+          });
+
+        await db
+          .collection("users")
+          .doc(uid)
+          .update({
+            follower: firebase.firestore.FieldValue.arrayRemove(myId)
+          });
+      } else {
+        await db
+          .collection("users")
+          .doc(myId)
+          .set({
+            followee: []
+          });
+      }
     };
   }
 
   componentDidMount = async () => {
     const db = firebase.firestore();
     const documentSnapshots = await db.collection("users").get();
-
+    const { myId } = this.props;
     const users = [];
 
     documentSnapshots.forEach(doc => {
-      users.push(doc.id);
+      if (doc.id !== myId) {
+        users.push(doc.id);
+      }
     });
 
     this.setState({ users });

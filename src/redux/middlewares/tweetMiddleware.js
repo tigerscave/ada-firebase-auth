@@ -33,8 +33,7 @@ const tweetMiddleware = store => next => action => {
   if (action.type === userTweets.MY_TWEET_LISTENER) {
     const user = action.payload;
     const userId = user.uid;
-    db.collection("tweets")
-      .where("userId", "==", userId)
+    db.collection(`users/${userId}/feed`)
       .orderBy("createdAt", "desc")
       .limit(10)
       .onSnapshot(documentSnapshots => {
@@ -91,6 +90,7 @@ const tweetMiddleware = store => next => action => {
     const searchText = action.payload;
     db.collection("tweets")
       .orderBy("tag")
+      .orderBy("createdAt", "desc")
       .startAt(searchText)
       .endAt(searchText + "\uf8ff")
       .onSnapshot(snapshot => {
