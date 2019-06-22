@@ -93,17 +93,8 @@ const tweetMiddleware = store => next => action => {
       .orderBy("tag")
       .startAt(searchText)
       .endAt(searchText + "\uf8ff")
-      .get()
-      .then(documentSnapshots => {
-        let searchedTweetsTag = [];
-        documentSnapshots.forEach(doc => {
-          const data = {
-            tweetId: doc.id,
-            ...doc.data()
-          };
-          searchedTweetsTag.push(data);
-        });
-        store.dispatch(userTweets.searchTweetTagSucceed(searchedTweetsTag));
+      .onSnapshot(snapshot => {
+        store.dispatch(userTweets.searchTweetTagSucceed(snapshot.docs));
       });
   }
 };

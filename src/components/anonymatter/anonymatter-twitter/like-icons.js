@@ -43,10 +43,10 @@ class LikeIcons extends React.Component {
   render() {
     const { tweet, myId } = this.props;
     const { likedUsers } = tweet;
-    const isTweetLiked = likedUsers && likedUsers.every(id => id !== myId);
+    let isTweetLiked = likedUsers && likedUsers.some(id => id === myId);
     return (
       <span>
-        {isTweetLiked ? (
+        {!isTweetLiked ? (
           <i onClick={this.onLikeClicked} className="far fa-heart" />
         ) : (
           <i onClick={this.onDislikeClicked} className="fas fa-heart" />

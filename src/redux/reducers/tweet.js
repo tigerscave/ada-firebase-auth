@@ -83,7 +83,13 @@ const reducer = (state = INITIAL_STATE, action) => {
     }
 
     case SEARCH_TWEET_TAG_SUCCEED: {
-      const searchedTweetsTag = action.payload;
+      const docs = action.payload;
+      const searchedTweetsTag = docs.map(doc => {
+        return {
+          tweetId: doc.id,
+          ...doc.data()
+        };
+      });
       return {
         ...state,
         searchedTweetsTag,
