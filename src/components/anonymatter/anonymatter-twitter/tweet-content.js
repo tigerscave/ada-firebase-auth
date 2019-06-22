@@ -40,7 +40,7 @@ const TweetContent = props => {
       </div>
       <div>
         <span>#{tweet.tag}</span>
-        <LikeIcons tweetId={tweet.tweetId} />
+        <LikeIcons tweet={tweet} />
       </div>
       <style jsx>{`
         .tweets-list {

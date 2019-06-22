@@ -7,33 +7,51 @@ import { connect } from "react-redux";
 class LikeIcons extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isTweetLiked: false
+    };
 
     this.onLikeClicked = () => {
-      const { tweetId, myId } = this.props;
+      const { tweet, myId } = this.props;
+      const { tweetId } = tweet;
       const db = firebase.firestore();
       db.collection("tweets")
         .doc(tweetId)
         .update({
           likedUsers: firebase.firestore.FieldValue.arrayUnion(myId)
         });
+      this.setState({
+        isTweetLiked: true
+      });
     };
 
     this.onDislikeClicked = () => {
-      const { tweetId, myId } = this.props;
+      const { tweet, myId } = this.props;
+      const { tweetId } = tweet;
       const db = firebase.firestore();
       db.collection("tweets")
         .doc(tweetId)
         .update({
           likedUsers: firebase.firestore.FieldValue.arrayRemove(myId)
         });
+      this.setState({
+        isTweetLiked: false
+      });
     };
   }
 
   render() {
+    const { tweet, myId } = this.props;
+    const { likedUsers } = tweet;
+    let isTweetLiked = likedUsers && likedUsers.some(id => id === myId);
     return (
       <span>
-        <i onClick={this.onLikeClicked} className="fas fa-heart" />
-        <i onClick={this.onDislikeClicked} className="far fa-heart" />
+        {!isTweetLiked ? (
+          <i onClick={this.onLikeClicked} className="far fa-heart" />
+        ) : (
+          <i onClick={this.onDislikeClicked} className="fas fa-heart" />
+        )}
+        <span>{likedUsers && likedUsers.length}</span>
         <style jsx>{`
           i {
             font-size: 16px;
@@ -58,7 +76,7 @@ LikeIcons.defaultProps = {
 };
 
 LikeIcons.propTypes = {
-  tweetId: PropTypes.string.isRequired,
+  tweet: PropTypes.shape().isRequired,
   myId: PropTypes.string
 };
 
