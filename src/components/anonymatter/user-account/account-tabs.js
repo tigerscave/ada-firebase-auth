@@ -24,7 +24,6 @@ const AccountHeaderTabs = props => {
         .container {
           display: flex;
           margin: auto;
-          background: yellow;
           width: 50%;
         }
         .tabs {
@@ -53,11 +52,11 @@ const mapStateToProps = state => {
 };
 
 AccountHeaderTabs.propTypes = {
-  myTweetsLength: PropTypes.string
+  myTweetsLength: PropTypes.number
 };
 
 AccountHeaderTabs.defaultProps = {
-  myTweetsLength: ""
+  myTweetsLength: 0
 };
 
 export default connect(

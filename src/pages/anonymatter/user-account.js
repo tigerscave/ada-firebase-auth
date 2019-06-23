@@ -24,7 +24,7 @@ const mapStateToProps = state => {
 };
 
 UserAccountPage.propTypes = {
-  userCredential: PropTypes.array
+  userCredential: PropTypes.shape()
 };
 
 UserAccountPage.defaultProps = {

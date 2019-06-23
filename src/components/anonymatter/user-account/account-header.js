@@ -21,7 +21,6 @@ const AccountHeader = () => {
           position: absolute;
           left: 30px;
           top: 92px;
-          // background: yellow;
         }
         .userIconBox i {
           font-size: 140px;

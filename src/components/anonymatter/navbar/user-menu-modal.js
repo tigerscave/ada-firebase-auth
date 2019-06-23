@@ -11,7 +11,7 @@ const UserMenuModal = () => {
       <p>no_name</p>
       <ul>
         <li>
-          <Link className="App-link" to="/anonymatter/account">
+          <Link to="/anonymatter/account">
             <i className="far fa-user" />
             <span>My Tweets</span>
           </Link>
