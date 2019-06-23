@@ -1,12 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const AccountHeaderTabs = () => {
+const AccountHeaderTabs = props => {
+  const { myTweetsLength } = props;
   return (
     <div className="container">
       <ul className="tabs">
         <li>
           <p>Tweets</p>
-          <p>30</p>
+          <p>{myTweetsLength}</p>
         </li>
         <li>
           <p>Following</p>
@@ -42,4 +45,22 @@ const AccountHeaderTabs = () => {
   );
 };
 
-export default AccountHeaderTabs;
+const mapStateToProps = state => {
+  const { myTweetsLength } = state.usersDetail;
+  return {
+    myTweetsLength
+  };
+};
+
+AccountHeaderTabs.propTypes = {
+  myTweetsLength: PropTypes.string
+};
+
+AccountHeaderTabs.defaultProps = {
+  myTweetsLength: ""
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(AccountHeaderTabs);

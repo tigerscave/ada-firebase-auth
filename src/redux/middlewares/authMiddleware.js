@@ -2,6 +2,7 @@ import * as loginAction from "../reducers/login";
 import * as logoutAction from "../reducers/logout";
 import * as userAction from "../reducers/user";
 import * as tweetAction from "../reducers/tweet";
+import * as usersDetailAction from "../reducers/usersDetail";
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -48,6 +49,7 @@ const authMiddleware = store => next => action => {
         store.dispatch(loginAction.loginSuccess());
         store.dispatch(userAction.setUser(user));
         store.dispatch(tweetAction.myTweetListener(user));
+        store.dispatch(usersDetailAction.displayTweetsDetail(user.uid));
         store.dispatch(push("/anonymatter/home"));
       } else {
         store.dispatch(loginAction.loginFailed());

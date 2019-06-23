@@ -80,5 +80,17 @@ const usersDetailMiddleware = store => next => action => {
         });
     });
   }
+
+  if (action.type === usersDetailAction.DISPLAY_TWEETS_DETAIL) {
+    const userId = store.getState().user.userCredential.uid;
+    db.collection("tweets")
+      .where("userId", "==", userId)
+      .onSnapshot(snapshot => {
+        const { docs, size } = snapshot;
+        store.dispatch(
+          usersDetailAction.displayTweetsDetailSucceed({ docs, size })
+        );
+      });
+  }
 };
 export default usersDetailMiddleware;
