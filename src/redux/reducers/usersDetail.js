@@ -9,9 +9,22 @@ export const searchUser = createAction(SEARCH_USER);
 export const SEARCH_USER_SUCCEED = "SEARCH_USER_SUCCEED";
 export const searchUserSucceed = createAction(SEARCH_USER_SUCCEED);
 
+export const DISPLAY_TWEETS_DETAIL = "DISPLAY_TWEETS_DETAIL";
+export const displayTweetsDetail = createAction(DISPLAY_TWEETS_DETAIL);
+
+export const DISPLAY_TWEETS_DETAIL_SUCCEED = "DISPLAY_TWEETS_DETAIL_SUCCEED";
+export const displayTweetsDetailSucceed = createAction(
+  DISPLAY_TWEETS_DETAIL_SUCCEED
+);
+
+displayTweetsDetailSucceed;
 const INITIAL_STATE = {
   isLoading: false,
-  searchedUser: null
+  searchedUser: null,
+  followers: null,
+  following: null,
+  myPostedTweets: null,
+  myTweetsLength: null
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -33,6 +46,27 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         searchedUser,
         isLoading: false
+      };
+    }
+
+    case DISPLAY_TWEETS_DETAIL: {
+      return {
+        ...state
+      };
+    }
+
+    case DISPLAY_TWEETS_DETAIL_SUCCEED: {
+      const { docs, size } = action.payload;
+      const myPostedTweets = docs.map(doc => {
+        return {
+          tweetId: doc.id,
+          ...doc.data()
+        };
+      });
+      return {
+        ...state,
+        myPostedTweets,
+        myTweetsLength: size
       };
     }
 

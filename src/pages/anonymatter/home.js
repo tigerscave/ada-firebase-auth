@@ -2,7 +2,7 @@ import React from "react";
 import AnonymatterNavBar from "../../components/anonymatter/navbar";
 import DisplayTweets from "../../components/anonymatter/anonymatter-twitter/tweets";
 import { darkGray } from "../../styles/color";
-import DashboardProfile from "../../components/anonymatter/my-account/dashboard-profile";
+import DashboardProfile from "../../components/anonymatter/user-account/dashboard-profile";
 
 const AnonymatterHome = () => (
   <div>

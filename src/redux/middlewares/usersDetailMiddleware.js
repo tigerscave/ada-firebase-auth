@@ -41,7 +41,7 @@ const usersDetailMiddleware = store => next => action => {
       })
       .then(() => {
         alert("Edit User Detail succeed");
-        store.dispatch(push("/my-account"));
+        store.dispatch(push("/user-account"));
       })
       .catch(err => alert(err));
   }
@@ -79,6 +79,18 @@ const usersDetailMiddleware = store => next => action => {
           alert("Error: " + err.message);
         });
     });
+  }
+
+  if (action.type === usersDetailAction.DISPLAY_TWEETS_DETAIL) {
+    const userId = store.getState().user.userCredential.uid;
+    db.collection("tweets")
+      .where("userId", "==", userId)
+      .onSnapshot(snapshot => {
+        const { docs, size } = snapshot;
+        store.dispatch(
+          usersDetailAction.displayTweetsDetailSucceed({ docs, size })
+        );
+      });
   }
 };
 export default usersDetailMiddleware;
