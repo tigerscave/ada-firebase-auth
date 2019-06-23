@@ -41,7 +41,7 @@ const usersDetailMiddleware = store => next => action => {
       })
       .then(() => {
         alert("Edit User Detail succeed");
-        store.dispatch(push("/my-account"));
+        store.dispatch(push("/user-account"));
       })
       .catch(err => alert(err));
   }

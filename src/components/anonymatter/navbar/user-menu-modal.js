@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LogoutModal from "../logout/modal";
 import { darkGray } from "../../../styles/color";
+import { Link } from "react-router-dom";
 
 const UserMenuModal = () => {
   const [isModalShown, toggleModal] = useState(false);
@@ -10,8 +11,10 @@ const UserMenuModal = () => {
       <p>no_name</p>
       <ul>
         <li>
-          <i className="far fa-user" />
-          <span>My Tweets</span>
+          <Link className="App-link" to="/anonymatter/account">
+            <i className="far fa-user" />
+            <span>My Tweets</span>
+          </Link>
         </li>
         <li>
           <i className="fas fa-cog" />
