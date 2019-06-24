@@ -36,39 +36,72 @@ class LoginUser extends React.Component {
     return (
       <div>
         {isLoading && <h1>... Loading ...</h1>}
-        <div>
-          <div>
+        <div className="containers">
+          <div className="email-container">
             <p className="email">Email</p>
             <input
               placeholder="xxx@example.com"
-              //onChange={this.onEmailChanged}
-              //value={email}
+              onChange={this.onEmailChanged}
+              value={email}
             />
           </div>
-          <div>
-            <p>Password</p>
+          <div className="password-container">
+            <p className="password">Password</p>
             <input
-            onChange={this.onPasswordChanged}
-            value={password}
+              onChange={this.onPasswordChanged}
+              value={password}
             />
-            <p>Forgot password?</p>
+            <p className="forget-password">Forgot password?</p>
           </div>
-          <input
+          <input className="login"
             value="LOGIN"
             type="submit"
             onClick={() => onLoginButtonClicked({ email, password })}
           />
         </div>
         <style jsx>{`
+          div.containers {
+            display: flex;
+            padding: 2em 2em;
+            justify-content: space-around;
+          }
           p.email {
             color: ${accent};
             font-weight: bold;
           }
           input {
-            padding: 20px 20px;
+            padding-left: 80px;
+            padding-right: 80px;
+            border: .5px solid ${accent};
+            background: #F1F8FE;
+            border-radius: 5px;
+            padding-top: 18px;
+            padding-bottom: 18px;
+          }
+          .email-container {
+          }
+          .password-container {
 
           }
+          .password {
+            color: ${accent};
+            font-weight: bold;
+          }
+          input.login {
+            border: 2px solid ${accent};
+            margin: 3rem 0;
+            font-weight: bold;
+            color: ${accent};
+          }
 
+          .forget-password {
+            color: #A9A9A9;
+            margin-top: 5px;
+            font-weight: bold;
+          }
+          ::placeholder {
+            color: ${accent};
+          }
         `}</style>
       </div>
     );

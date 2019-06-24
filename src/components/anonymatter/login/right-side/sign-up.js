@@ -22,11 +22,11 @@ const SignUp = () => {
           padding-bottom: 18px;
           padding-right: 120px;
           padding-left: 120px;
-          margin-top: 40px;
-          margin-left: 120px;
+          margin-top: 5px;
+          margin-left: 40px;
           background-color: ${accent};
           border-radius: 5px;
-          margin-bottom: 100px;
+          margin-bottom: 400px;
           font-weight: bold;
           font-size: 1em;
         }
