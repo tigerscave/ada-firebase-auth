@@ -69,6 +69,12 @@ class LoginUser extends React.Component {
           }
           .email-box > input {
             width: 99%;
+            height: 50px;
+          }
+
+          .password-box > input {
+            width: 220%;
+            height: 50px;
           }
           p.email {
             color: ${accent};
@@ -91,14 +97,20 @@ class LoginUser extends React.Component {
             border: 2px solid ${accent};
             font-weight: bold;
             color: ${accent};
+            width: 15%;
+            height: 50px;
+            margin: 50px 0 0 200px;
           }
 
           .forget-password {
             color: #A9A9A9;
             font-weight: bold;
+            margin: 5px 0 25px 0;
           }
           ::placeholder {
             color: ${accent};
+            padding: 0 0 0 20px;
+
           }
         `}</style>
       </div>
