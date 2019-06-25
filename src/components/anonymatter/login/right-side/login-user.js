@@ -53,7 +53,8 @@ class LoginUser extends React.Component {
             />
             <p className="forget-password">Forgot password?</p>
           </div>
-          <input className="login"
+          <input
+            className="login"
             value="LOGIN"
             type="submit"
             onClick={() => onLoginButtonClicked({ email, password })}
@@ -71,9 +72,11 @@ class LoginUser extends React.Component {
             width: 99%;
             height: 50px;
           }
-
+          .password-box {
+            width: 35%;
+          }
           .password-box > input {
-            width: 220%;
+            width: 100%;
             height: 50px;
           }
           p.email {
@@ -99,7 +102,7 @@ class LoginUser extends React.Component {
             color: ${accent};
             width: 15%;
             height: 50px;
-            margin: 50px 0 0 200px;
+            margin: 50px 0 0 50px;
           }
 
           .forget-password {
@@ -109,6 +112,8 @@ class LoginUser extends React.Component {
           }
           ::placeholder {
             color: ${accent};
+            font-weight: bold;
+            font-size: 1rem;
             padding: 0 0 0 20px;
 
           }
