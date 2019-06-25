@@ -38,7 +38,7 @@ const SignUp = () => {
         i {
           font-size: 34px;
           color: ${accent};
-          margin: 0 15px 0 0;
+          margin: 0 10px 0 0;
         }
         span.login {
           font-size: 16px;
