@@ -22,11 +22,14 @@ const LoginLeftSide = () => {
         div.container {
           flex: 1;
           background: ${backgroundBlue};
+          width: 50%;
         }
 
         div.content {
           margin-left: 200px;
           margin-top: 200px;
+          background: yellow;
+
         }
       `}</style>
     </div>

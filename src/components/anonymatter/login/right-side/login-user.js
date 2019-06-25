@@ -36,8 +36,8 @@ class LoginUser extends React.Component {
     return (
       <div>
         {isLoading && <h1>... Loading ...</h1>}
-        <div className="containers">
-          <div className="email-container">
+        <div className="content">
+          <div className="email-box">
             <p className="email">Email</p>
             <input
               placeholder="xxx@example.com"
@@ -45,7 +45,7 @@ class LoginUser extends React.Component {
               value={email}
             />
           </div>
-          <div className="password-container">
+          <div className="password-box">
             <p className="password">Password</p>
             <input
               onChange={this.onPasswordChanged}
@@ -60,26 +60,26 @@ class LoginUser extends React.Component {
           />
         </div>
         <style jsx>{`
-          div.containers {
+          .content {
             display: flex;
-            padding: 2em 2em;
-            justify-content: space-around;
+          }
+          .email-box {
+            width: 35%;
+            margin-right: 50px;
+          }
+          .email-box > input {
+            width: 99%;
           }
           p.email {
             color: ${accent};
             font-weight: bold;
           }
           input {
-            padding-left: 80px;
-            padding-right: 80px;
             border: .5px solid ${accent};
             background: #F1F8FE;
             border-radius: 5px;
-            padding-top: 18px;
-            padding-bottom: 18px;
           }
-          .email-container {
-          }
+
           .password-container {
 
           }
@@ -89,14 +89,12 @@ class LoginUser extends React.Component {
           }
           input.login {
             border: 2px solid ${accent};
-            margin: 3rem 0;
             font-weight: bold;
             color: ${accent};
           }
 
           .forget-password {
             color: #A9A9A9;
-            margin-top: 5px;
             font-weight: bold;
           }
           ::placeholder {
