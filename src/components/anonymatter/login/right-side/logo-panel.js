@@ -3,12 +3,12 @@ import LogoProfilePanel from "./logo-profile-panel";
 
 const AnonymatterLogoPanel = () => {
   return (
-    <div>
+    <div className="container">
       <div>
         <h1>Anonymatter</h1>
         <p>NameLess SNS</p>
       </div>
-      <div>
+      <div className="logoComponents">
         <LogoProfilePanel />
         <LogoProfilePanel />
         <LogoProfilePanel />
@@ -16,8 +16,12 @@ const AnonymatterLogoPanel = () => {
         <LogoProfilePanel />
       </div>
       <style jsx>{`
-        div {
-          flex: 1;
+        .container {
+          display: flex;
+          margin-top: 120px;
+        }
+        .logoComponents {
+          margin-left: 40%;
         }
       `}</style>
     </div>

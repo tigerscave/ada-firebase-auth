@@ -11,20 +11,18 @@ const LogoProfilePanel = () => {
         div {
           //  flex: 1;
           display: flex;
-          justify-content: start;
+          padding: 5px;
         }
         i {
           color: #2699FB;
-          font-size: 55px;
-          margin-right: 15px;
-
+          font-size: 75px;
+          margin-right: 15%;
         }
 
         p {
           color: darkGray;
-          font-size: large;
-          font-weight: bold;
-
+          font-weight: 700;
+          font-size: 24px;
         }
       `}</style>
     </div>
