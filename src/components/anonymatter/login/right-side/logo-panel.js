@@ -21,7 +21,7 @@ const AnonymatterLogoPanel = () => {
           margin-top: 120px;
         }
         .logoComponents {
-          margin-left: 40%;
+          margin-left: 20%;
         }
       `}</style>
     </div>

@@ -20,7 +20,7 @@ const LogoProfilePanel = () => {
         }
 
         p {
-          color: darkGray;
+          color: #A9A9A9;
           font-weight: 700;
           font-size: 24px;
         }
