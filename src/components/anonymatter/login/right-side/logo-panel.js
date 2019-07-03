@@ -23,6 +23,11 @@ const AnonymatterLogoPanel = () => {
         .logoComponents {
           margin-left: 20%;
         }
+        h1 {
+          background: yellow;
+          font-size: 3rem;
+          font-weight: bold;
+        }
       `}</style>
     </div>
   );
