@@ -20,8 +20,8 @@ const LogoProfilePanel = () => {
         }
 
         p {
-          color: #A9A9A9;
-          font-weight: 700;
+          color: #686868;
+          font-weight: bold;
           font-size: 24px;
         }
       `}</style>

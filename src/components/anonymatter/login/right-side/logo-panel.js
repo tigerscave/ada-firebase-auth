@@ -6,7 +6,7 @@ const AnonymatterLogoPanel = () => {
     <div className="container">
       <div>
         <h1>Anonymatter</h1>
-        <p>NameLess SNS</p>
+        <p>Nameless SNS</p>
       </div>
       <div className="logoComponents">
         <LogoProfilePanel />
@@ -24,9 +24,13 @@ const AnonymatterLogoPanel = () => {
           margin-left: 20%;
         }
         h1 {
-          background: yellow;
-          font-size: 3rem;
+          font-size: 2.5rem;
           font-weight: bold;
+          color: #686868;
+        }
+        p {
+          color: #686868;
+          font-size: 25px;
         }
       `}</style>
     </div>
