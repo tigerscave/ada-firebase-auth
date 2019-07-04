@@ -17,21 +17,14 @@ const DescriptionPanel = props => {
           margin-bottom: 16px;
         }
         i {
-          margin-top: 17px;
-          margin-right: 24px;
-          background: ${accent};
-          width: 15px;
-          height: 15px;
-          border-radius: 50%;
-          text-align: center;
-          padding: 15px;
-          color: white;
+          color: #2699FB;
+          font-size: 50px;
+          margin-right: 15%;
+          border-radius: 15px;
         }
         p {
-          color: ${accent};
-          margin-top: 30px;
-          font-size: large;
           font-weight: bold;
+          font-size: 24px;
         }
       `}</style>
     </div>
