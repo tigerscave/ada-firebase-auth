@@ -32,7 +32,7 @@ class SearchArea extends React.Component {
       <div className="search">
         <input
           type="text"
-          placeholder="search tags"
+          placeholder="search Tags"
           value={searchText}
           onChange={this.onSearchInputChanged}
           onKeyPress={this.onKeyPress}
@@ -45,16 +45,18 @@ class SearchArea extends React.Component {
             align-items: center;
           }
           .fa-search {
-            margin-left: -25px;
+            margin-left: -38px;
             font-weight: bold;
+            font-size: 1.5em;
           }
           input {
-            //background: red;
-            font-size: 1.5em;
-            width: 80%;
+            background: #F1F8FE;
+            font-size: 15px;
+            width: 100%;
             padding: 0 10px 0 10px;
-            border: 3px solid #2699FB;
+            border: 2px solid #2699FB;
             border-radius: 10px;
+            padding: 8px 8px 8px 8px;
           }
         ::placeholder {
           color: #2699FB;

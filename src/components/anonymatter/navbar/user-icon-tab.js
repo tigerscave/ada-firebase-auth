@@ -15,7 +15,7 @@ const UserIconTab = () => {
         }
         .userIcon {
           margin: 0 30px;
-          font-size: 5rem;
+          font-size: 4rem;
           border: none;
           color: #686868;
         }
