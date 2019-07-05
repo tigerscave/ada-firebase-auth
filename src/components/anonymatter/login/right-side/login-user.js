@@ -88,10 +88,6 @@ class LoginUser extends React.Component {
             background: #F1F8FE;
             border-radius: 5px;
           }
-
-          .password-container {
-
-          }
           .password {
             color: ${accent};
             font-weight: bold;
