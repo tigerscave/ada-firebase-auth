@@ -45,13 +45,20 @@ class SearchArea extends React.Component {
             align-items: center;
           }
           .fa-search {
-            margin-left: -20px;
+            margin-left: -25px;
+            font-weight: bold;
           }
           input {
-            background: red;
-            padding: 30px;
-            color: green;
+            //background: red;
+            font-size: 1.5em;
+            width: 80%;
+            padding: 0 10px 0 10px;
+            border: 3px solid #2699FB;
+            border-radius: 10px;
           }
+        ::placeholder {
+          color: #2699FB;
+        }
         `}</style>
       </div>
     );

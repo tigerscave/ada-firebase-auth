@@ -17,7 +17,7 @@ const UserIconTab = () => {
           margin: 0 30px;
           font-size: 5rem;
           border: none;
-
+          color: #686868;
         }
         .menuContainer {
           position: absolute;
