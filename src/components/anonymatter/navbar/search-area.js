@@ -47,6 +47,11 @@ class SearchArea extends React.Component {
           .fa-search {
             margin-left: -20px;
           }
+          input {
+            background: red;
+            padding: 30px;
+            color: green;
+          }
         `}</style>
       </div>
     );
