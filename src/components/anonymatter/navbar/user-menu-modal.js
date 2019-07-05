@@ -31,7 +31,7 @@ const UserMenuModal = () => {
           position: absolute;
           right: 30px;
           border: 1.5px solid ${darkGray};
-          background: white;
+          background: blue;
         }
       `}</style>
     </div>

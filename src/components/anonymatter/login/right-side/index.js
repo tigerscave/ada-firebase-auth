@@ -7,9 +7,9 @@ const LoginRightSide = () => {
   return (
     <div className="container">
       <div className="content">
-      <LoginUser />
-      <SignUp />
-      <AnonymatterLogoPanel />
+        <LoginUser />
+        <SignUp />
+        <AnonymatterLogoPanel />
       </div>
       <style jsx>{`
         .container {

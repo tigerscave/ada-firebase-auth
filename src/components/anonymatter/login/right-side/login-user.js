@@ -47,10 +47,7 @@ class LoginUser extends React.Component {
           </div>
           <div className="password-box">
             <p className="password">Password</p>
-            <input
-              onChange={this.onPasswordChanged}
-              value={password}
-            />
+            <input onChange={this.onPasswordChanged} value={password} />
             <p className="forget-password">Forgot password?</p>
           </div>
           <input
@@ -84,8 +81,8 @@ class LoginUser extends React.Component {
             font-weight: bold;
           }
           input {
-            border: .5px solid ${accent};
-            background: #F1F8FE;
+            border: 0.5px solid ${accent};
+            background: #f1f8fe;
             border-radius: 5px;
           }
           .password {
@@ -102,7 +99,7 @@ class LoginUser extends React.Component {
           }
 
           .forget-password {
-            color: #A9A9A9;
+            color: #a9a9a9;
             font-weight: bold;
             margin: 5px 0 25px 0;
           }
@@ -111,7 +108,6 @@ class LoginUser extends React.Component {
             font-weight: bold;
             font-size: 1rem;
             padding: 0 0 0 20px;
-
           }
         `}</style>
       </div>

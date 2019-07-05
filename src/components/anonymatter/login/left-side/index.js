@@ -28,7 +28,6 @@ const LoginLeftSide = () => {
         div.content {
           margin-left: 200px;
           margin-top: 200px;
-          background: red;
         }
       `}</style>
     </div>

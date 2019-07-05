@@ -4,14 +4,14 @@ import { accent } from "../../../../styles/color";
 const SignUp = () => {
   return (
     <div className="container">
-        <button className="signup">Sign Up</button>
-        <button className="twitter">
-          <i className="fab fa-twitter" />
-          <span className="login">Twitter Login</span>
-        </button>
+      <button className="signup">Sign Up</button>
+      <button className="twitter">
+        <i className="fab fa-twitter" />
+        <span className="login">Twitter Login</span>
+      </button>
       <style jsx>{`
         .container {
-           display: flex;
+          display: flex;
           //  background: yellow;
         }
         .signup {

@@ -14,7 +14,7 @@ const LogoProfilePanel = () => {
           padding: 5px;
         }
         i {
-          color: #2699FB;
+          color: #2699fb;
           font-size: 75px;
           margin-right: 15%;
         }

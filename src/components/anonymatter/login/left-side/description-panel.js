@@ -19,7 +19,6 @@ const DescriptionPanel = props => {
         i {
           margin-top: 17px;
           margin-right: 24px;
-          background-color: red;
           background: ${accent};
           width: 15px;
           height: 15px;
@@ -34,8 +33,6 @@ const DescriptionPanel = props => {
           font-size: 2rem;
           font-weight: bold;
         }
-
-
       `}</style>
     </div>
   );
