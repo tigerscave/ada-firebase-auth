@@ -54,8 +54,8 @@ class SearchArea extends React.Component {
             font-size: 15px;
             width: 100%;
             padding: 0 10px 0 10px;
-            border: 2px solid #2699FB;
-            border-radius: 10px;
+            border: 1px solid #2699FB;
+            border-radius: 8px;
             padding: 8px 8px 8px 8px;
           }
         ::placeholder {
