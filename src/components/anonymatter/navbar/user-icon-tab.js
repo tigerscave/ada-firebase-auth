@@ -11,7 +11,7 @@ const UserIconTab = () => {
       {isMenuShown && <UserMenuModal />}
       <style jsx>{`
         .container {
-        //  background-color: green;
+          //  background-color: green;
         }
         .userIcon {
           margin: 0 30px;

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { userLogin, checkUserAuth } from "../../../../redux/reducers/login";
-import { backgroundBlue, accent, darkGray } from "../../../../styles/color";
+import { accent } from "../../../../styles/color";
 
 class LoginUser extends React.Component {
   constructor(props) {
