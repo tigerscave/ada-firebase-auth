@@ -4,14 +4,20 @@ import UserMenuModal from "./user-menu-modal";
 const UserIconTab = () => {
   const [isMenuShown, toggleMenu] = useState(false);
   return (
-    <div>
+    <div className="container">
       <button className="userIcon" onClick={() => toggleMenu(!isMenuShown)}>
         <i className="fas fa-user-circle" />
       </button>
       {isMenuShown && <UserMenuModal />}
       <style jsx>{`
+        .container {
+          //  background-color: green;
+        }
         .userIcon {
           margin: 0 30px;
+          font-size: 4rem;
+          border: none;
+          color: #686868;
         }
         .menuContainer {
           position: absolute;

@@ -5,13 +5,19 @@ import SignUp from "./sign-up";
 
 const LoginRightSide = () => {
   return (
-    <div>
-      <LoginUser />
-      <SignUp />
-      <AnonymatterLogoPanel />
+    <div className="container">
+      <div className="content">
+        <LoginUser />
+        <SignUp />
+        <AnonymatterLogoPanel />
+      </div>
       <style jsx>{`
-        div {
+        .container {
           flex: 1;
+          width: 50%;
+        }
+        .content {
+          margin: 0 0 0 70px;
         }
       `}</style>
     </div>

@@ -24,13 +24,13 @@ const DescriptionPanel = props => {
           height: 15px;
           border-radius: 50%;
           text-align: center;
-          padding: 15px;
+          padding: 30px;
           color: white;
         }
         p {
-          color: ${accent};
-          margin-top: 30px;
-          font-size: large;
+          color: #009df5;
+          margin-top: 40px;
+          font-size: 2rem;
           font-weight: bold;
         }
       `}</style>

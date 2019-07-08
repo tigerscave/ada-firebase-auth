@@ -22,6 +22,7 @@ const LoginLeftSide = () => {
         div.container {
           flex: 1;
           background: ${backgroundBlue};
+          width: 50%;
         }
 
         div.content {
